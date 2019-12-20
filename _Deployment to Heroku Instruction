@@ -1,0 +1,46 @@
+// Go to Root project folder then create Procfile
+echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
+
+git init
+git add -A
+git commit -m "Message"
+
+heroku login
+heroku create
+
+git push heroku master
+
+//Goto dashboard.heroku.com 
+//> Go to/select App
+//> find Settings Tab
+//> find and click Reveal Config Vars
+//then add the following "key" and "value"
+
+APP_NAME -> //"Project Name"
+APP_KEY -> //Copy App key value in .env
+DB_HOST -> remotemysql.com
+DB_DATABASE -> //get in remotemysql.com (Make sure to login and create a database.)
+DB_USERNAME -> //get in remotemysql.com (usually the same with the database name)
+DB_PASSWORD -> //get in remotemysql.com
+
+
+// To migrate
+// Go to Root project folder
+heroku run bash
+php artisan migrate
+php artisan db:seed --class=ChangeThisToSeederClass
+
+// To exit heroku terminal
+exit
+
+// To Update Existing Heroku Project
+git add -A
+git commit -m "Message"
+
+heroku login
+
+git push heroku master
+
+// To clone from heroku app
+// Goto Setting and find "Heroku Git URL"
+git clone ChangeThisToHerokuGitURL

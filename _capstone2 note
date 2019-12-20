@@ -1,0 +1,18 @@
+Jan 6, 2020 - Capstone presentation
+Additional requirements:
+
+*Create crud, minimum of 3.
+
+*Use fetch on all of your CRUDs (with msg response)
+
+*Additional 2 middlewares (super user, supervisor or super admin)
+
+*Users can update their profile
+
+*Super admin can only deactivate and activate ordinary users, supervisors or managers account
+
+*Use Soft deletes (Only super admin/super user can view and restore the softdeleted data)
+
+*Should have seeders/inverse seeding
+
+*Generate minimum 150 data on your products
