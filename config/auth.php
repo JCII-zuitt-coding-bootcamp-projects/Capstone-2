@@ -46,7 +46,15 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        // Modified for Admin auth
+        'admin' => [
+             'driver' => 'session',
+             'provider' => 'admins',
+        ]
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -66,16 +74,25 @@ return [
     */
 
     'providers' => [
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        // Modified for Admin auth
+        'admins' => [
+             'driver' => 'eloquent',
+             'model' => App\Admin::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -93,12 +110,22 @@ return [
     */
 
     'passwords' => [
+
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        // Modified for Admin auth , dont know if this will work, its experemnt
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'admin_password_resets',
+            'expire' => 20,
+            'throttle' => 60,
+        ],
+
     ],
 
     /*

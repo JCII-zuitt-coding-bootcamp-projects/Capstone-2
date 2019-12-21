@@ -16,6 +16,17 @@ Route::get('/', function () {
     return redirect('home');
 });
 
+// User auth
 Auth::routes();
+
+// Admin
+Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
+
+	// Admin auth
+	Auth::routes();
+
+	Route::get('/home', 'PagesController@index')->name('home');
+
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
