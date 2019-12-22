@@ -20,6 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 // Admin
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
 
 	// Admin auth
@@ -27,6 +32,7 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
 
 	Route::get('/home', 'PagesController@index')->name('home');
 
-});
 
-Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/bookable/templates/create', 'BookableTemplateController@create')->name('bookable.templates.create');
+
+});

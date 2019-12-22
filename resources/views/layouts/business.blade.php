@@ -23,11 +23,6 @@
   <!-- Custom styles for this template -->
   <style type="text/css">
     
-    /*!
- * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
- * Copyright 2013-2019 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
- */
     body {
       overflow-x: hidden;
       /*position: relative; */
@@ -199,7 +194,7 @@
                       <i class="material-icons float-right">visibility</i>
                       View all
                   </a>
-                  <a href="#" class="list-group-item list-group-item-action ">
+                  <a href="{{ route('admin.bookable.templates.create') }}" class="list-group-item list-group-item-action ">
                       <i class="material-icons float-right">post_add</i>
                       Design new template
                   </a>
@@ -324,7 +319,17 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-  <!-- Menu Toggle Script -->
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <!-- production version, optimized for size and speed -->
+  {{-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> --}}
+
+  
+
+
+  @yield('external-js')
+
   <script>
 
     $( document ).ready(function() {
