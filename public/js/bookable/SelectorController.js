@@ -42,7 +42,7 @@ var SelectorController = new Vue({
 
     },
 
-    
+
 
     reset : function(){
         this.selected = [];
@@ -61,8 +61,19 @@ var SelectorController = new Vue({
     selected: function (new_selected, old_selected) {
 
       if(new_selected.length == 0 ){
-        // console.log("zero");
         CellDivisionController.resetColsRows();
+      }else{
+
+            //division phase
+            if(CellData.selectedIsChild()){
+                let cellData = CellData.getCellData(); // the selected one
+
+                CellDivisionController.setColsRows(cellData.col,cellData.row);
+            }else{
+                CellDivisionController.resetColsRows();
+
+            }
+
       }
 
     },

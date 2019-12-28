@@ -32,7 +32,14 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
 
 	Route::get('/home', 'PagesController@index')->name('home');
 
-
 	Route::get('/bookable/templates/create', 'BookableTemplateController@create')->name('bookable.templates.create');
+	Route::get('/bookable/templates/edit/{id}', 'BookableTemplateController@edit')->name('bookable.templates.edit');
 
+
+	//template API access for fetch
+	Route::post('/template/{id}/data', 'BookableTemplateController@getTemplateData')->name('template.getTemplateData');
+
+	Route::post('/template/{id}/update', 'BookableTemplateController@updateTemplateData')->name('template.updateTemplateData');
+
+	// {parent_cell : 'c_1',col :4,row : 3}
 });

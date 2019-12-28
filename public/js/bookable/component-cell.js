@@ -16,8 +16,9 @@ Vue.component('cell', {
 
     	  <div v-for="num in (data.col * data.row)"
              @click=" checkAction( num )"  
+             
     	  		 style=" border: ;"
-    	  		 v-bind:style= "[isCurrentlySelected(num) ? {backgroundColor : 'rgba(208, 209, 210)', border : '4px dashed green' } : {backgroundColor : 'transparent', border : '1px solid grey' } ]"
+    	  		 v-bind:style= "[isCurrentlySelected(num) ? {backgroundColor : 'rgba(208, 209, 210)', border : '4px solid green' } : {backgroundColor : 'transparent', border : '1px solid grey' } ]"
     	  >
     	  		
     	  		<template v-if="hasChild( cId( num ) )">
@@ -87,6 +88,14 @@ Vue.component('cell', {
     		this.selector_controller.toggleAddCellID( this.cId( num ) );
     	}
     },
+
+    // @dblclick="checkActionDblClick(num)"
+    // checkActionDblClick : function ( num ){
+    //   // this.selector_controller.toggleAddCellID( this.cId( num ) );
+    //   CellData.selectParentCellId();
+    // },
+
+
 
     isCurrentlySelected : function ( num ){
     	return this.selector_controller.selected.includes( this.cId( num )  );

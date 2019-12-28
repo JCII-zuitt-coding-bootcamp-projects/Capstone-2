@@ -17,7 +17,12 @@ var CellDivisionController = new Vue({
     resetColsRows : function(){
       this.cols = 1;
       this.rows = 1;
-      console.log("RESEtted!");
+      // console.log("RESEtted!");
+    },
+
+    setColsRows : function(cols,rows){
+      this.cols = cols;
+      this.rows = rows;
     },
     
 

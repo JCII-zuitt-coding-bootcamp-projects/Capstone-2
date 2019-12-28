@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\BookableTemplate;
+
+
+
 class BookableTemplateController extends Controller
 {
     /**
@@ -24,7 +28,7 @@ class BookableTemplateController extends Controller
      */
     public function create()
     {
-        return view('admin.bookable.template.create');
+        return "create temp route";
     }
 
     /**
@@ -58,6 +62,9 @@ class BookableTemplateController extends Controller
     public function edit($id)
     {
         //
+        $template_id =  $id;
+
+        return view('admin.bookable.template.create',compact('template_id'));
     }
 
     /**
@@ -82,4 +89,23 @@ class BookableTemplateController extends Controller
     {
         //
     }
+
+
+    public function getTemplateData($id)
+    {
+        return BookableTemplate::find($id);
+        // return "nice:" . $id;
+    }
+
+    public function updateTemplateData($id)
+    {
+        $newChildrenData =  request()->all();
+        // BookableTemplate
+        $encodedNewChildrenData =  json_encode($newChildrenData);
+       
+        return BookableTemplate::where('id', $id)
+                                ->update(['children' => $encodedNewChildrenData]);
+
+    }
+
 }
