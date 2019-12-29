@@ -10,7 +10,9 @@ var CellData = new Vue({
     message: 'Hello Vue!',
 
     template_id : $('#template_id').attr('value'),
-    template_name : "Template 1",
+    name : "",
+    notes : "",
+    category : "",
     selector_controller : SelectorController ,
     cells : {
     		origin : {
@@ -21,20 +23,20 @@ var CellData = new Vue({
 
     		children : [
 
-		   //  	{
-		   //  			parent_cell : 'c_1',
-		   //  			col : 4,
-		   //  			row : 3,
-		  	// }
+			   //  	{
+			   //  			parent_cell : 'c_1',
+			   //  			col : 4,
+			   //  			row : 3,
+			  	// }
 
 		    ],
 
 
 		    bookable : {
-		    	c_1_2 : {
-		    		name: "A1",
-		    		price: 230,
-		    	}
+		    	// c_1_2 : {
+		    	// 	name: "A1",
+		    	// 	price: 230,
+		    	// }
 		    }
 
 
@@ -47,15 +49,7 @@ var CellData = new Vue({
   methods: {
 
 
-  		deleteChild : function(cidEntered){
-
-  			// let cid;
-
-	    // 	if(cidEntered == undefined){
-	    // 		cid = this.selector_controller.selected[0];
-	    // 	}else{
-	    // 		cid = cidEntered;
-	    // 	}
+  		deleteChild : function(cidEntered = this.selector_controller.selected[0] ){
 
   			let index = this.getChildCellIndex(cidEntered);
   			// delete this.cells.children[index];
@@ -109,10 +103,23 @@ var CellData = new Vue({
     		
     	},
 
-    	//check if the selected is already a child
-    	selectedIsChild : function ( ){
-    		let cId = this.selector_controller.selected[0];
+    	addEditBookableDetails : function(name,price,cid = this.selector_controller.selected[0]){
 
+    		if(name != ""){ // if same 1 dont save as new
+				// this.cells.bookable[cid] = { name: name, price: price };
+				this.$set(this.cells.bookable, cid , { name: name, price: price } ); // create or edited exisinng bookable cell
+	    		console.log("new bookable added/edited!");
+			}else{
+    			delete this.cells.bookable[cid];
+	    		console.log(cid + " bookable details deleted");
+
+			}
+    		
+    	},
+
+    	//check if the selected is already a child
+    	selectedIsChild : function (cId = this.selector_controller.selected[0]){
+    		// let cId = this.selector_controller.selected[0];
     		//map first the parent_cell in array of json
 	        return this.cells.children.map(function(child, index, arr){
 				    return child.parent_cell;
@@ -193,8 +200,16 @@ var CellData = new Vue({
 			})
 			.then((response) => response.json())
 			.then((responseData) => {
-			  // console.log('Success:', data);
+
+			  console.log('Success:', responseData);
 	    		this.cells.children = responseData.children;
+	    		this.cells.bookable = responseData.bookable;
+
+	    		this.name = responseData.name;
+	    		this.notes = responseData.notes;
+	    		this.category = responseData.category;
+
+	    		
 
 
 
@@ -216,34 +231,50 @@ var CellData = new Vue({
 	    },
 
 
+	    saveChanges : function(){
+
+	    	console.log(this.cells.bookable);
+	    	fetch("/admin/template/"+ this.template_id + "/update", {
+			  method: 'POST', // or 'PUT'
+			  headers: {
+			    'Content-Type': 'application/json',
+		      	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			  },
+			  body: JSON.stringify({
+			  		children : this.cells.children,
+			  		bookable : this.cells.bookable,
+			  	}),
+			})
+			.then((response) => response.json())
+			.then((responseData) => {
+			  // console.log('Success:', responseData);
+			  console.log("Changes Saved!");
+
+			})
+			.catch((error) => {
+			  console.error('Error:', error);
+			});
+
+			  
+	    },
+
+
 
   },
 
   watch: {
-  	'cells.children' : function (newchildren, oldchildren) {
+
+  	//if their is chages, saved automatically.. not ideal for testing only
+ //  	'cells.children' : function (newchildren, oldchildren) {
+ //  		this.saveChanges();
+ //    },
+
+	// //if their is chages, saved automatically.. not ideal for testing only
+ //    'cells.bookable' : function (newchildren, oldchildren) {
+ //  		this.saveChanges();
+ //    },
 
 
-  		fetch("/admin/template/"+ this.template_id + "/update", {
-		  method: 'POST', // or 'PUT'
-		  headers: {
-		    'Content-Type': 'application/json',
-	      	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		  },
-		  body: JSON.stringify( this.cells.children ),
-		})
-		.then((response) => response.json())
-		.then((responseData) => {
-		  console.log('Success:', responseData);
-		  console.log("Saved Changes");
-
-		})
-		.catch((error) => {
-		  console.error('Error:', error);
-		});
-
-		  console.log("Saved Chanxxxges");
-     
-    },
   },
 
   

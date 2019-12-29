@@ -38,8 +38,8 @@ Vue.component('cell', {
 
 
               <div v-if="isBookable( num )" style="background-color:white; width: 100%; height:100%; padding:10%;">
-                <div style="background-color:grey; width: 100%; height:100%; border-radius:10px;">
-                  {{  }}
+                <div style=" word-wrap: break-word; font-size: 1vw; background-color:#b1b1b1; width: 100%; height:100%; border-radius:10px;" class="text-center">
+                  {{ getBookableNameCode(num)  }}
 
                </div>    
               </div>
@@ -95,7 +95,6 @@ Vue.component('cell', {
     		return null;
     	}else{
     		//pure child action
-    		// return this.print(  num  ); // just print as of now 
 
     		this.selector_controller.toggleAddCellID( this.cId( num ) );
     	}
@@ -119,9 +118,14 @@ Vue.component('cell', {
     // Bookable...
 
     isBookable : function ( num ){
-      // 
       // console.log( this.bookable[ this.cId( num ) ]);
       return this.bookable[ this.cId( num ) ] != undefined ? true : false;
+
+    },
+
+    getBookableNameCode : function ( num ){
+      // console.log( this.bookable[ this.cId( num ) ]);
+      return this.bookable[ this.cId( num ) ].name;
 
     },
 

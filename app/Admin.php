@@ -40,4 +40,11 @@ class Admin  extends Authenticatable
     ];
 
 
+
+    public function bookableTemplates()
+    {
+        return $this->hasMany('App\BookableTemplate');
+    }
+
+
 } 

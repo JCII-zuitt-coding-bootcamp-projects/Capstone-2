@@ -33,6 +33,8 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
 	Route::get('/home', 'PagesController@index')->name('home');
 
 	Route::get('/bookable/templates/create', 'BookableTemplateController@create')->name('bookable.templates.create');
+	Route::post('/bookable/templates/create', 'BookableTemplateController@store')->name('bookable.templates.store');
+	
 	Route::get('/bookable/templates/edit/{id}', 'BookableTemplateController@edit')->name('bookable.templates.edit');
 
 

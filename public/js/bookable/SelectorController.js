@@ -95,14 +95,13 @@ var SelectorController = new Vue({
             }else{
 
                   //Bookable phase
+
                   if(CellData.cellIsBookable()){
                       let details = CellData.getBookableDetails(); // the bookable details of selected one
 
                       CellDivisionController.setBookableDetails(details.name,details.price);
-                      // console.log(cellBookableDetails);
                   }else{
                       CellDivisionController.resetBookableDetails();
-                      // console.log("is NOT bookable");
 
 
                   }
@@ -119,7 +118,7 @@ var SelectorController = new Vue({
 
     },
 
-
+    //if phase changes, remove any selected
     phase :  function (new_phase, old_phase) {
       this.reset();
     }

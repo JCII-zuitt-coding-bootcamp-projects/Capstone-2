@@ -19,7 +19,7 @@
 
         {{-- cells playground --}}
         <div class="col-md-8" id="cellData">
-                <h2 class="text-center"> @{{ template_name }} </h2>
+                <h2 class="text-center"> @{{ name }} <small class="text-secondary">Template</small></h2>
 
                 <div id="cell-holder"  class="mx-auto" style="width: 500px; height: 500px; ">
                 	<cell v-bind:data="cells.origin"
@@ -81,17 +81,15 @@
                         </div>
                       </div>
 
-                      <div class="form-group row" v-if="selector.selected.length > 0" 
-                            @click='cellData.deleteChild()'>
+                      <div class="form-group row">
                         <div class=" offset-sm-4 col-sm-8">
-                          <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                          <button type="submit" @click='cellData.deleteChild()' class="btn btn-block btn-danger mb-2" :disabled="selector.selected.length == 0">Delete</button>
                         </div>
                       </div>
 
-                      <div class="form-group row" v-if="selector.selected.length > 0" 
-                            @click='cellData.selectParentCellId()'>
+                      <div class="form-group row" >
                         <div class=" offset-sm-4 col-sm-8">
-                          <button type="submit" class="btn btn-primary mb-2">Select parent</button>
+                          <button type="submit" @click='cellData.selectParentCellId()' class="btn btn-block btn-primary mb-2" :disabled="selector.selected.length == 0">Select parent</button>
                         </div>
                       </div>
 
@@ -122,6 +120,13 @@
                   
 
                 
+            </div>
+
+            <div class="form-group row "  
+                  @click='cellData.saveChanges()'>
+              <div class="col-sm-12 ">
+                <button type="submit" class="btn btn-success my-2 btn-block">Save Changes</button>
+              </div>
             </div>
 
         </div>

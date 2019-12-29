@@ -53,18 +53,36 @@ var CellDivisionController = new Vue({
   },
 
   watch: {
-    // whenever question changes, this function will run
-    cols: function (newcols, oldCols) {
-      if( this.selector.hasSelected() ){
-        this.cellData.addEditChild(this.cols, this.rows)
-      }
-    },
 
-    rows: function (newRows, oldRows) {
-      if( this.selector.hasSelected() ){
-        this.cellData.addEditChild(this.cols, this.rows)
-      }
-    },
+      // Cell division
+      // whenever a cols or rows changes, this method will run
+      cols: function (newcols, oldCols) {
+        if( this.selector.hasSelected() ){
+          this.cellData.addEditChild(this.cols, this.rows)
+        }
+      },
+
+      rows: function (newRows, oldRows) {
+        if( this.selector.hasSelected() ){
+          this.cellData.addEditChild(this.cols, this.rows)
+        }
+      },
+
+
+      // Cell assingin bookable
+      name: function (newName, oldName) {
+        if( this.selector.hasSelected() ){
+          this.cellData.addEditBookableDetails(this.name, this.price)
+        }
+      },
+
+      price: function (newPrice, oldPrice) {
+        if( this.selector.hasSelected() ){
+          this.cellData.addEditBookableDetails(this.name, this.price)
+        }
+      },
+
+      
 
 
 

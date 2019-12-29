@@ -16,11 +16,16 @@ class CreateBookableTemplatesTable extends Migration
         Schema::create('bookable_templates', function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->string('name',100);
+            $table->string('notes',200);
+            $table->string('category',50);
+
             $table->unsignedBigInteger('admin_id');
             $table->foreign('admin_id')->references('id')->on('admins');
 
 
             $table->text('children')->nullable()->default("[]"); //array string
+            $table->text('bookable')->nullable()->default("{}"); //array string
             
             $table->timestamps();
 

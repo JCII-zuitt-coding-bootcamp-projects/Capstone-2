@@ -36,7 +36,8 @@ class BookableTemplateController extends Controller
      */
     public function create()
     {
-        return "create temp route";
+        // return "create temp route";
+        return view( 'admin.bookable.template.create' );
     }
 
     /**
@@ -48,6 +49,21 @@ class BookableTemplateController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validatedData = $request->validate([
+            'name' => 'required|min:5',
+            'notes' => 'required',
+            'category' => 'required',
+        ]);
+
+        // dd();
+        // bookableTemplates
+
+        $new = auth('admin')->user()->bookableTemplates()->create( $request->all() );
+
+        return redirect()->route('admin.bookable.templates.edit' , ['id' => $new->id ]);
+        // return "nuice";
+
     }
 
     /**
@@ -70,9 +86,17 @@ class BookableTemplateController extends Controller
     public function edit($id)
     {
         //
-        $template_id =  $id;
+        
+        if ( BookableTemplate::where('id' , $id )->exists() ) {
+           $template_id =  $id;
+            return view('admin.bookable.template.edit',compact('template_id'));
 
-        return view('admin.bookable.template.edit',compact('template_id'));
+        }else{
+            return redirect()->route('admin.bookable.templates.create');
+            // abort(404);
+        }
+        
+
     }
 
     /**
@@ -107,12 +131,18 @@ class BookableTemplateController extends Controller
 
     public function updateTemplateData($id)
     {
-        $newChildrenData =  request()->all();
+        $newData =  request()->all();
+
+        
+        // if( is_array($newData['bookable']) ){
+        //     $newData['bookable'] = "{}"; // to avoid saving "[]" in bookable field in database
+        // }
+        // dd($newData);
         // BookableTemplate
-        $encodedNewChildrenData =  json_encode($newChildrenData);
+        // $encodedNewChildrenData =  $newChildrenData;//json_encode()
        
         return BookableTemplate::where('id', $id)
-                                ->update(['children' => $encodedNewChildrenData]);
+                                ->update( $newData ); // children and bookable
 
     }
 
