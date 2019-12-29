@@ -9,6 +9,7 @@ var CellData = new Vue({
   data: {
     message: 'Hello Vue!',
 
+    template_id : $('#template_id').attr('value'),
     template_name : "Template 1",
     selector_controller : SelectorController ,
     cells : {
@@ -27,6 +28,14 @@ var CellData = new Vue({
 		  	// }
 
 		    ],
+
+
+		    bookable : {
+		    	c_1_2 : {
+		    		name: "A1",
+		    		price: 230,
+		    	}
+		    }
 
 
     },
@@ -148,7 +157,7 @@ var CellData = new Vue({
 
 	    },
 
-	    getCellData : function(cidEntered){
+	    getCellColsRows : function(cidEntered){
 	    	let cid;
 
 	    	if(cidEntered == undefined){
@@ -162,27 +171,16 @@ var CellData = new Vue({
 	    	return this.cells.children[this.getChildCellIndex()];
 	    },
 
-	 //    postData : async function(url = 'ss', data = {}) {
-		//   // Default options are marked with *
-		//   const response = await fetch(url, {
-		//     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-		//     mode: 'cors', // no-cors, *cors, same-origin
-		//     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-		//     credentials: 'same-origin', // include, *same-origin, omit
-		//     headers: {
-		//       'Content-Type': 'application/json',
-		//       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		//       // 'Content-Type': 'application/x-www-form-urlencoded',
-		//     },
-		//     redirect: 'follow', // manual, *follow, error
-		//     referrerPolicy: 'no-referrer', // no-referrer, *client
-		//     body: JSON.stringify(data) // body data type must match "Content-Type" header
-		//   });
-		//   return await response.json(); // parses JSON response into native JavaScript objects
-		// },
+	    getBookableDetails : function(cid = this.selector_controller.selected[0]){//cidEntered
+	    	// console.log("vcccc:" + cid)
+	    	// this.selected[0]
+	    	return this.cells.bookable[cid];
+	    },
+
+
 
 	    initTemplateData : function(){
-	    	let url = "/admin/template/1/data";
+	    	let url = "/admin/template/"+ this.template_id + "/data";
 
 	    	fetch(url, {
 			  method: 'POST', // or 'PUT'
@@ -206,9 +204,16 @@ var CellData = new Vue({
 			});
 
 
-	    	// console.log(data);
 	    },
 
+
+
+
+	    // Bookable methos
+
+	    cellIsBookable : function(cid = this.selector_controller.selected[0] ){ // if no passed cid the method will check the current selected cid
+	    	return this.cells.bookable[ cid ] != undefined ? true : false;
+	    },
 
 
 
@@ -218,7 +223,7 @@ var CellData = new Vue({
   	'cells.children' : function (newchildren, oldchildren) {
 
 
-  		fetch("/admin/template/1/update", {
+  		fetch("/admin/template/"+ this.template_id + "/update", {
 		  method: 'POST', // or 'PUT'
 		  headers: {
 		    'Content-Type': 'application/json',

@@ -5,8 +5,15 @@ var CellDivisionController = new Vue({
   data: {
     selector : SelectorController ,
     cellData : CellData,
+
+    //divisitioning
     cols : 1,
     rows : 1,
+
+    //cell bookable
+    name: "",
+    price: 0,
+
 
   },
 
@@ -23,6 +30,18 @@ var CellDivisionController = new Vue({
     setColsRows : function(cols,rows){
       this.cols = cols;
       this.rows = rows;
+    },
+
+
+    resetBookableDetails : function(){
+      this.name = "";
+      this.price = 0;
+      // console.log("RESEtted!");
+    },
+
+    setBookableDetails : function(name,price){
+      this.name = name;
+      this.price = price;
     },
     
 

@@ -1,9 +1,13 @@
 var SelectorController = new Vue({
  
-  el: '#templateEditor',
+  // el: '#SelectorController',
 
   data: {
-    phase : 'Division',
+    phase : 'Divisioning',
+            // Divisioning
+            // Bookable
+            // Designing
+            // FinalLook
     selected : [], //selected cells
 
   },
@@ -15,7 +19,7 @@ var SelectorController = new Vue({
 
     	if( this.selected.includes(cID) ){
     		// Removing cell
-    		console.log( 'Cell: ' + cID + ' is REMOVED! ');
+    		// console.log( 'Cell: ' + cID + ' is REMOVED! ');
     		let index = this.selected.indexOf(cID);
     		this.selected.splice(index, 1);
     	}else{
@@ -24,7 +28,7 @@ var SelectorController = new Vue({
                 this.selected = []; // remove previous selected since its not multiple mode
             }
     		
-            console.log( 'Cell: ' + cID + ' is ADDED');
+            // console.log( 'Cell: ' + cID + ' is ADDED');
             this.selected.push(cID);
 
     	}
@@ -34,7 +38,7 @@ var SelectorController = new Vue({
 
     isInMultipleSelect : function(){
 
-      if(this.phase == 'division'){
+      if(this.phase == 'Divisioning'){
         return false;
       }else{
         return false;
@@ -60,23 +64,65 @@ var SelectorController = new Vue({
 
     selected: function (new_selected, old_selected) {
 
-      if(new_selected.length == 0 ){
-        CellDivisionController.resetColsRows();
-      }else{
+      // create action depending on the current phase
 
-            //division phase
-            if(CellData.selectedIsChild()){
-                let cellData = CellData.getCellData(); // the selected one
 
-                CellDivisionController.setColsRows(cellData.col,cellData.row);
+      switch(this.phase) {
+        case 'Divisioning':
+
+            if(new_selected.length == 0 ){
+              CellDivisionController.resetColsRows();
             }else{
-                CellDivisionController.resetColsRows();
 
-            }
+                  //division phase
+                  if(CellData.selectedIsChild()){
+                      let cellData = CellData.getCellColsRows(); // the selected one
 
+                      CellDivisionController.setColsRows(cellData.col,cellData.row);
+                  }else{
+                      CellDivisionController.resetColsRows();
+
+                  }
+
+            }  
+
+        break;
+
+        case 'Bookable':
+            
+            if(new_selected.length == 0 ){
+              CellDivisionController.resetBookableDetails();
+            }else{
+
+                  //Bookable phase
+                  if(CellData.cellIsBookable()){
+                      let details = CellData.getBookableDetails(); // the bookable details of selected one
+
+                      CellDivisionController.setBookableDetails(details.name,details.price);
+                      // console.log(cellBookableDetails);
+                  }else{
+                      CellDivisionController.resetBookableDetails();
+                      // console.log("is NOT bookable");
+
+
+                  }
+
+            } 
+
+        break;
+
+
+        default:
+          // code block
       }
+      
 
     },
+
+
+    phase :  function (new_phase, old_phase) {
+      this.reset();
+    }
 
   },
 

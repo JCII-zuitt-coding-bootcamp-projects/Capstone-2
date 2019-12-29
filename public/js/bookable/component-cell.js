@@ -1,7 +1,8 @@
 Vue.component('cell', {
   props: [
   		'data',
-  		'children',
+      'children',
+  		'bookable',
   		'selector_controller'
 	],
   template: `
@@ -25,6 +26,7 @@ Vue.component('cell', {
 
     	  			<cell v-bind:data=" newChild( num ) "
     	  				  v-bind:children="children"
+                  v-bind:bookable="bookable"
     	  				  v-bind:selector_controller="selector_controller"
     	  				  >
     	  			</cell>
@@ -32,6 +34,16 @@ Vue.component('cell', {
     	  		</template>
     	  		<template v-else>
     	  			<!-- {{ cId( num )  }} -->
+              <!-- Final design -->
+
+
+              <div v-if="isBookable( num )" style="background-color:white; width: 100%; height:100%; padding:10%;">
+                <div style="background-color:grey; width: 100%; height:100%; border-radius:10px;">
+                  {{  }}
+
+               </div>    
+              </div>
+
     	  		</template>	
 
 
@@ -100,6 +112,19 @@ Vue.component('cell', {
     isCurrentlySelected : function ( num ){
     	return this.selector_controller.selected.includes( this.cId( num )  );
     },
+
+
+
+
+    // Bookable...
+
+    isBookable : function ( num ){
+      // 
+      // console.log( this.bookable[ this.cId( num ) ]);
+      return this.bookable[ this.cId( num ) ] != undefined ? true : false;
+
+    },
+
 
   }
 

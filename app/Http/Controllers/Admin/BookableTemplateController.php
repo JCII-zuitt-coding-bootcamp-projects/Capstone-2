@@ -11,6 +11,14 @@ use App\BookableTemplate;
 
 class BookableTemplateController extends Controller
 {
+
+
+
+    public function __construct()
+    {
+        $this->middleware('auth_admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -64,7 +72,7 @@ class BookableTemplateController extends Controller
         //
         $template_id =  $id;
 
-        return view('admin.bookable.template.create',compact('template_id'));
+        return view('admin.bookable.template.edit',compact('template_id'));
     }
 
     /**
