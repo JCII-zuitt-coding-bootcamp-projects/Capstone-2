@@ -13,6 +13,8 @@ var CellData = new Vue({
     name : "",
     notes : "",
     category : "",
+    total_bookable : 0,
+
     selector_controller : SelectorController ,
     cells : {
     		origin : {
@@ -204,11 +206,12 @@ var CellData = new Vue({
 			  console.log('Success:', responseData);
 	    		this.cells.children = responseData.children;
 	    		this.cells.bookable = responseData.bookable;
+	    		console.log(responseData.bookable);
 
 	    		this.name = responseData.name;
 	    		this.notes = responseData.notes;
 	    		this.category = responseData.category;
-
+	    		this.total_bookable = responseData.total_bookable;
 	    		
 
 
@@ -232,7 +235,7 @@ var CellData = new Vue({
 
 
 	    saveChanges : function(){
-
+	    	
 	    	console.log(this.cells.bookable);
 	    	fetch("/admin/template/"+ this.template_id + "/update", {
 			  method: 'POST', // or 'PUT'
@@ -243,6 +246,8 @@ var CellData = new Vue({
 			  body: JSON.stringify({
 			  		children : this.cells.children,
 			  		bookable : this.cells.bookable,
+			  		total_bookable : Object.keys(this.cells.bookable).length
+
 			  	}),
 			})
 			.then((response) => response.json())

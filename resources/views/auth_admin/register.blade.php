@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header text-center">{{ __('Register Business Account') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('admin.register') }}">
@@ -61,9 +61,41 @@
                             </div>
                         </div>
 
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Business name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="business_name" type="text" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required autocomplete="business_name" >
+
+                                @error('business_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Business address') }}</label>
+
+                            <div class="col-md-6">
+
+                                <textarea id="business_address" type="text" class="form-control @error('business_address') is-invalid @enderror" name="business_address" required autocomplete="business_address">{{ old('business_address') }}</textarea>
+                                @error('business_address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-block btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>

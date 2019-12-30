@@ -18,7 +18,7 @@ class Admin  extends Authenticatable
 
 
     protected $fillable = [
-        'name', 'email', 'username', 'password','email_verfied_at'
+        'name', 'email', 'username', 'password','email_verfied_at' , 'business_id'
     ];
 
     /**
@@ -41,9 +41,20 @@ class Admin  extends Authenticatable
 
 
 
+    public function bookables()
+    {
+        return $this->hasMany('App\Bookable');
+    }
+
     public function bookableTemplates()
     {
         return $this->hasMany('App\BookableTemplate');
+    }
+
+
+    public function business()
+    {
+        return $this->belongsTo('App\Business');
     }
 
 

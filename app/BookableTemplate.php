@@ -12,7 +12,8 @@ class BookableTemplate extends Model
 
 	protected $fillable = [
         'name', 'notes', 'category', 
-        'admin_id', 'children', 'bookable', 
+        'admin_id', 'children', 'bookable',
+        'total_bookable', 'business_id',
     ];
 
 
@@ -51,5 +52,27 @@ class BookableTemplate extends Model
     {
         return $this->belongsTo('App\Admin');
     }
+
+     public function business()
+    {
+        return $this->belongsTo('App\Business');
+    }
+
+    public function bookables()
+    {
+        return $this->hasMany('App\Bookable');
+    }
+
+
+
+
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('total_bookable', '>', 0);
+                    // ->where('is_ready', 1);
+    }
+
+
 
 }

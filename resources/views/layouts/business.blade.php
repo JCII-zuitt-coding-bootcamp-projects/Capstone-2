@@ -172,11 +172,11 @@
                 <i class="material-icons float-right">keyboard_arrow_down</i>
               </a>
                 <div class="collapse" id="collapseExampleBookable">
-                  <a href="#" class="list-group-item list-group-item-action ">
+                  <a href="{{ route('admin.bookable.index') }}" class="list-group-item list-group-item-action ">
                       <i class="material-icons float-right">visibility</i>
                       View all
                   </a>
-                  <a href="#" class="list-group-item list-group-item-action ">
+                  <a href="{{ route('admin.bookable.create') }}" class="list-group-item list-group-item-action ">
                       <i class="material-icons float-right">add_to_photos</i>
                       Add new bookable
                   </a>
@@ -190,7 +190,7 @@
                 <i class="material-icons float-right">keyboard_arrow_down</i>
                 </a>
                 <div class="collapse" id="collapseExampleBookableTemplates">
-                  <a href="#" class="list-group-item list-group-item-action ">
+                  <a href="{{ route('admin.bookable.templates.index') }}" class="list-group-item list-group-item-action ">
                       <i class="material-icons float-right">visibility</i>
                       View all
                   </a>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminsTable extends Migration
+class CreateBusinessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,23 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedBigInteger('business_id');
-            $table->foreign('business_id')->references('id')->on('businesses');
+            $table->unsignedBigInteger('admin_id')->nullable();; // tje main admin.... initialy the one who register the business
+
 
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('address');
+
+            $table->string('google_map')->nullable();
+            $table->text('details')->nullable();
+
+
+
+
+
+
             $table->timestamps();
         });
     }
@@ -35,6 +41,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('businesses');
     }
 }

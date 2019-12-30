@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Admin;
+use App\Business;
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -62,6 +64,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+
+            'business_name' => ['required', 'min:5', 'string', 'max:255'],
+            'business_address' => ['required', 'min:8', 'string', 'max:255'],
+
         ]);
     }
 
@@ -73,11 +79,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Admin::create([
+
+        //create first the business
+        $business = Business::create([
+            'name' => $data['business_name'],
+            'address' => $data['business_address'],
+        ]);
+
+        // make the first admin
+        $admin = $business->admins()->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $admin;
     }
 
 

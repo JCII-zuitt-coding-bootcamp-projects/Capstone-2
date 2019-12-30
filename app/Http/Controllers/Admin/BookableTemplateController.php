@@ -26,7 +26,16 @@ class BookableTemplateController extends Controller
      */
     public function index()
     {
-        //
+
+        // $templates = auth('admin')->user()->bookableTemplates;
+        
+        $templates = BookableTemplate::withCount('bookables')
+                                    ->where('business_id', auth('admin')->user()->business_id )
+                                    ->get();
+
+        // dd($templates);
+        return view( 'admin.bookable_template.index' ,compact('templates'));
+        
     }
 
     /**
@@ -37,7 +46,7 @@ class BookableTemplateController extends Controller
     public function create()
     {
         // return "create temp route";
-        return view( 'admin.bookable.template.create' );
+        return view( 'admin.bookable_template.create' );
     }
 
     /**
@@ -58,8 +67,10 @@ class BookableTemplateController extends Controller
 
         // dd();
         // bookableTemplates
+        $data = $request->all();
+        $data['business_id'] = auth('admin')->user()->business_id;
 
-        $new = auth('admin')->user()->bookableTemplates()->create( $request->all() );
+        $new = auth('admin')->user()->bookableTemplates()->create( $data );
 
         return redirect()->route('admin.bookable.templates.edit' , ['id' => $new->id ]);
         // return "nuice";
@@ -89,7 +100,7 @@ class BookableTemplateController extends Controller
         
         if ( BookableTemplate::where('id' , $id )->exists() ) {
            $template_id =  $id;
-            return view('admin.bookable.template.edit',compact('template_id'));
+            return view('admin.bookable_template.edit',compact('template_id'));
 
         }else{
             return redirect()->route('admin.bookable.templates.create');
@@ -133,10 +144,17 @@ class BookableTemplateController extends Controller
     {
         $newData =  request()->all();
 
+        // dd($newData);
         
-        // if( is_array($newData['bookable']) ){
-        //     $newData['bookable'] = "{}"; // to avoid saving "[]" in bookable field in database
-        // }
+        if( is_array($newData['bookable']) ){
+
+            if( count($newData['bookable']) == 0 ){
+                 $newData['bookable'] = "{}"; // to avoid saving "[]" in bookable field in database
+                 $newData['total_bookable'] = 0;
+            }
+           
+        }
+
         // dd($newData);
         // BookableTemplate
         // $encodedNewChildrenData =  $newChildrenData;//json_encode()
