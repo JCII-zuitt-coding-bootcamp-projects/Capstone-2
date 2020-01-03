@@ -13,6 +13,7 @@ class Bookable extends Model
     ];
 
     
+    protected $dates = ['created_at', 'updated_at', 'start_at', 'end_at'];
 
     //the one who created the bookable schedule
     public function admin()

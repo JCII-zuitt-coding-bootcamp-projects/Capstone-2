@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+use App\Bookable;
+class CustomerPagesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,7 +25,14 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
-        // return dd(auth('admin')->check());
-        // return dd(auth('admin')->user());
     }
+
+    public function reserve($bookable_id)
+    {   
+        // dd($bookable_id);
+        $bookable = Bookable::findOrFail($bookable_id);
+        // dd($bookable->toArray());
+        return view('reserve', compact('bookable'));
+    }
+
 }

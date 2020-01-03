@@ -8,32 +8,51 @@
 @section('content')
 <div class="container-">
     
-    <div class="justify-content-center container" >
+    <div class=" container" >
 
       <h4 class="text-center mb-3">Bookable Schedules ({{ $bookables->count() }})</h4>
 
         
       @forelse ($bookables as $bookable)
-          <div class="card" style="width: 18rem;">
-            @if( $bookable->image != "" )
-            <img src="{{ asset('images/bookable-posters/' . $bookable->image) }}" class="card-img-top" alt="...">
-            @endif
-            <div class="card-body">
-              <h5 class="card-title">{{ $bookable->name }}</h5>
-              <p class="card-text"><em>{{ $bookable->description }}</em></p>
+
+
+          <div class="card mb-4">
+            <div class="card-header">
+                Seats: <strong class="text-secondary">50/100</strong>
+
+              
+                <span class="float-right">
+                  Status: <strong class="text-secondary">Ongoing/Starting after 20 minustes/Ended</strong>
+                </span>
+              
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Status: <strong class="text-secondary">Ongoing/Starting after 20 minustes/Ended</strong></li>
-              <li class="list-group-item">Total seats: <strong class="text-secondary">100</strong></li>
-              <li class="list-group-item">Reserved: <strong class="text-secondary">50</strong></li>
-              <li class="list-group-item">Available: <strong class="text-secondary">50</strong></li>
-              
-              
-            </ul>
             <div class="card-body">
-                <a href="#" class="btn btn-info">Reservations</a>
-                <a href="#" class="btn btn-warning float-right">Edit</a>
-                
+              
+              <div class="row">
+                <div class="col-md-3 col-sm-12">
+
+                  @if( $bookable->image != "" )
+                    <img src="{{ asset('images/bookable-posters/' . $bookable->image) }}" class="card-img-top" alt="...">
+                  @endif
+
+                </div>
+                <div class="col-md-9 col-sm-12">
+
+                    <h5 class="card-title">{{ $bookable->name }}</h5>
+                    <p class="card-text">About: <em> {{ $bookable->description }} </em> </p>
+
+                    <ul class="list-group list-group-flush mb-2">
+                      <li class="list-group-item p-1">Start: {{$bookable->start_at->toDayDateTimeString()}}</li>
+                      <li class="list-group-item p-1">End: &nbsp;{{$bookable->end_at->toDayDateTimeString()}} </li>
+                    </ul>
+                    <a href="#" class="btn btn-info">Details</a>
+                    <a href="#" class="btn btn-warning ">Edit</a>
+
+
+                </div>
+
+              </div>
+
             </div>
           </div>
       @empty

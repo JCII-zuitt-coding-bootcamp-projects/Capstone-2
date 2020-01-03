@@ -22,7 +22,21 @@ Auth::routes();
 // Admin
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'CustomerPagesController@index')->name('home');
+Route::get('/reserve/{bookable_id}', 'CustomerPagesController@reserve')->name('reserve');
+
+
+Route::post('/reservations/{bookable_id}/data', 'ReservationController@getBookableReservations')->name('bookable.reservations');
+
+
+
+
+
+
+
+
+
+
 
 
 Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
