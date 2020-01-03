@@ -60,7 +60,7 @@ class BookableController extends Controller
     public function store(Request $request)
     {
         //
-
+         // return "zzz";
         // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|min:5',

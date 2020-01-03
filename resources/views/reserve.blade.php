@@ -79,16 +79,17 @@
                            <div class="container" id="" style="min-height: 200px;">
                                
                                <div class="mt-3" >
-                                   <h5 class="text-info text-center">Selected @{{ category }}s(<span class="text-secondary">@{{ selector_controller.selected.length }}</span>)</h5>
-                                   <li v-for="cell_id in selector_controller.selected" v-if="selector_controller.selected.length > 0">
-                                       @{{ getBookableNameCode(cell_id) }} - ₱@{{ getBookablePrice(cell_id) }}
-                                   </li>
+                                   <h5 class="text-info text-center">Selected @{{ category }}s <small class="text-secondary">(@{{ selector_controller.selected.length }})</small></h5>
+                                   <ol v-if="selector_controller.selected.length > 0">
+                                       <li v-for="cell_id in selector_controller.selected" >
+                                           @{{ getBookableNameCode(cell_id) }} - ₱@{{ getBookablePrice(cell_id) }}
+                                       </li>
+                                   </ol>
+                                   <center>
+                                       <h6 class="text-secondary text-center mt-4">Total: ₱@{{ currentTotalPrice }}</span></h6>
 
-                                   <h6 class="text-secondary text-center mt-4">Total: ₱@{{ currentTotalPrice }}</span></h6>
-
-
-                                   <center class="mt-2">
-                                       <button class="btn btn-success" :disabled="selector_controller.selected.length == 0">
+                                   
+                                       <button class="btn btn-success mt-2" :disabled="selector_controller.selected.length == 0" @click="reserve()">
                                            Reserve
                                        </button>
                                    </center>

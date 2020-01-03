@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReservationsTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,8 @@ class CreateReservationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            // the bookable id where reservation belongs, the bookabltemplate will get from it also
-            $table->unsignedBigInteger('payment_id');
-            $table->foreign('payment_id')->references('id')->on('payments');
-
-            $table->unsignedBigInteger('bookable_id');
-            $table->foreign('bookable_id')->references('id')->on('bookables');
 
             //the one reserve if through admin...
             $table->unsignedBigInteger('admin_id')->nullable();
@@ -31,10 +24,9 @@ class CreateReservationsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->string('bookable_item_name',20); // seat code/number, table name/etc
-            $table->string('cell_id',50); // or refer as cid in js code
+            $table->unsignedSmallInteger('total')->default(0);
+            $table->string('method'); // payment method
 
-            $table->unsignedSmallInteger('price')->default(0);
 
 
             $table->timestamps();
@@ -48,6 +40,6 @@ class CreateReservationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservations');
+        Schema::dropIfExists('payments');
     }
 }

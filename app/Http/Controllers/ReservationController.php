@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Reservation;
+
 use Illuminate\Http\Request;
 
+use App\Bookable;
+use App\Reservation;
+use App\Payment;
+;
 class ReservationController extends Controller
 {
     /**
@@ -22,6 +26,90 @@ class ReservationController extends Controller
         $reservations = Reservation::where('bookable_id',$bookable_id)->pluck('cell_id');
         return $reservations;
     }
+
+
+    public function newReservation(Request $request){
+        // $reservations = Reservation::where('bookable_id',$bookable_id)->pluck('cell_id');
+        $cells = $request->seat_cells;
+        $bookable_id = $request->bookable_id;
+
+        $bookable = Bookable::with('bookableTemplate')->find($bookable_id);
+
+        // return dd($bookable->bookableTemplate->bookable->c_1_1->price);
+        // return $bookable->bookableTemplate->bookable->{$cells[0]}->name;
+
+        //count total price
+            $total = 0;
+            foreach ($cells as $cell){ 
+              $total = $total + (int) $bookable->bookableTemplate->bookable->{$cell}->price;
+            } 
+
+        $credits = auth()->user()->credits; // must be from auth user, wala pa kasing field
+        if( $credits >= $total){
+            //Check if all seats are available
+            $taken = $bookable->reservations()
+                            ->whereIn('cell_id',$cells)
+                            ->count();
+            $taken;
+
+            if( $taken > 0){
+                return [
+                    'success' => false,
+                    'msg' => $taken . ( $taken > 1 ? ' seats' : ' seat' ) . ( $taken > 1 ? ' are' : ' is' ) . ' already taken.'
+                ];
+            }else{
+
+                //Reserve now......
+                // return "OKS";
+                $payment = auth()->user()->payments()
+                                        ->create([
+                                            'total' => $total,
+                                            'method' => 'online_payment'
+
+                                        ]);
+
+                //subtract user credits
+                auth()->user()->decrement('credits', $total);
+
+                // $reservations_to_insert = [];
+
+                            foreach ($cells as $cell){ 
+                              // $total = $total + (int) $bookable->bookableTemplate->bookable->{$cell}->price;
+                              // $reservations_to_insert[] = [
+                              //                       'bookable_id' => $bookable_id,
+                              //                       'user_id' => auth()->user()->id ,
+                              //                       'bookable_item_name' => $bookable->bookableTemplate->bookable->{$cell}->name ,
+                              //                       'cell_id' => $cell ,
+                              //                       'price' => (int) $bookable->bookableTemplate->bookable->{$cell}->price ,
+                              //                   ];
+                                $payment->reservations()->create([
+                                                    'bookable_id' => $bookable_id,
+                                                    'user_id' => auth()->user()->id ,
+                                                    'bookable_item_name' => $bookable->bookableTemplate->bookable->{$cell}->name ,
+                                                    'cell_id' => $cell ,
+                                                    'price' => (int) $bookable->bookableTemplate->bookable->{$cell}->price ,
+                                                ]);
+                            } 
+
+                // return $reservations;
+
+                // $reservations = $payment->reservations()->create($reservations_to_insert);
+
+                return "$reservations_to_insert";
+
+            }
+
+        }else{
+            return [
+                'success' => false,
+                'msg' => 'Insufficient credits.'
+            ];
+        }
+        // return $total;
+        // return dd($bookable->bookableTemplate->bookable->c_1_1->price);
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      *

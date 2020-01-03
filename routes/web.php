@@ -26,7 +26,8 @@ Route::get('/home', 'CustomerPagesController@index')->name('home');
 Route::get('/reserve/{bookable_id}', 'CustomerPagesController@reserve')->name('reserve');
 
 
-Route::post('/reservations/{bookable_id}/data', 'ReservationController@getBookableReservations')->name('bookable.reservations');
+Route::post('/reservations/{bookable_id}/data', 'ReservationController@getBookableReservations')->name('reservation.reservations'); // array of reserved cells
+Route::post('/reservations/{bookable_id}/new', 'ReservationController@newReservation')->name('reservation.new'); // reserve new seats/cell
 
 
 

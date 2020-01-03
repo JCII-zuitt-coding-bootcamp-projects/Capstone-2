@@ -57,6 +57,36 @@ var TemplateCellData = new Vue({
   methods: {
 
 
+  		reserve : function(){
+  			// console.log("nice");
+
+  			let url = "/reservations/"+ this.bookable_id + "/new";
+
+	    	fetch(url, {
+			  method: 'POST', // or 'PUT'
+			  headers: {
+			    'Content-Type': 'application/json',
+		      	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+			  },
+			  body: JSON.stringify({
+			  	seat_cells : this.selector_controller.selected,
+			  	bookable_id : this.bookable_id,
+			  }),
+			})
+			.then((response) => response.json())
+			.then((responseData) => {
+
+			  console.log('Success:', responseData);
+
+
+
+			})
+			.catch((error) => {
+			  console.error('Error:', error);
+			});
+
+  		},
 
 	    initTemplateData : function(){
 	    	let url = "/admin/template/"+ this.template_id + "/data";
