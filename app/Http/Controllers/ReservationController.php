@@ -53,9 +53,10 @@ class ReservationController extends Controller
             $taken;
 
             if( $taken > 0){
+                $cat = $bookable->bookableTemplate->category;;
                 return [
                     'success' => false,
-                    'msg' => $taken . ( $taken > 1 ? ' seats' : ' seat' ) . ( $taken > 1 ? ' are' : ' is' ) . ' already taken.'
+                    'msg' => $taken . ( $taken > 1 ? ' ' . $cat . '/s' : ' ' . $cat ) . ( $taken > 1 ? ' are' : ' is' ) . ' already taken. Please reload the page.'
                 ];
             }else{
 
@@ -95,7 +96,10 @@ class ReservationController extends Controller
 
                 // $reservations = $payment->reservations()->create($reservations_to_insert);
 
-                return "$reservations_to_insert";
+                return [
+                            'success' => true,
+                            'msg' => 'Reservation successfull.'
+                        ];
 
             }
 

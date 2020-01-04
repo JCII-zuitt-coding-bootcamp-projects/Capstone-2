@@ -5,8 +5,9 @@ var TemplateCellData = new Vue({
   	// alert("started");
   	
   	this.proportionParentHeightWidth();
-  	this.initTemplateData();
   	this.getReservations();
+  	this.initTemplateData();
+  	
   },
   data: {
     message: 'Hello Vue!',
@@ -48,8 +49,14 @@ var TemplateCellData = new Vue({
 
     },
 
-    reservations : []
+    reservations : [],
 
+    //error and succcess msg
+    ajax_response : {
+    	success : false,
+    	msg : "Something went wrong",
+
+    },
 
   },
 
@@ -77,9 +84,16 @@ var TemplateCellData = new Vue({
 			.then((response) => response.json())
 			.then((responseData) => {
 
-			  console.log('Success:', responseData);
+				  // console.log('Success:', responseData);
+				  this.ajax_response = responseData;
+				  $("#responseMsgModal").modal("show");
+				  
 
-
+				  //if success reservation
+				  if(this.ajax_response.success){
+				  	this.reservations = this.reservations.concat(this.selector_controller.selected);
+				  	this.selector_controller.reset();
+				  }
 
 			})
 			.catch((error) => {
@@ -87,6 +101,8 @@ var TemplateCellData = new Vue({
 			});
 
   		},
+
+
 
 	    initTemplateData : function(){
 	    	let url = "/admin/template/"+ this.template_id + "/data";
