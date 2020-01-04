@@ -25,13 +25,23 @@ Auth::routes();
 Route::get('/home', 'CustomerPagesController@index')->name('home');
 Route::get('/reserve/{bookable_id}', 'CustomerPagesController@reserve')->name('reserve');
 
+Route::get('/services', 'ReservationController@services')->name('reservation.services');
 
+
+Route::get('/reservations', 'ReservationController@index')->name('reservation.index');
+Route::post('/reservations', 'ReservationController@getUserReservationsByPayment')->name('reservation.getUserReservationsByPayment');
+
+// for ajax
 Route::post('/reservations/{bookable_id}/data', 'ReservationController@getBookableReservations')->name('reservation.reservations'); // array of reserved cells
 Route::post('/reservations/{bookable_id}/new', 'ReservationController@newReservation')->name('reservation.new'); // reserve new seats/cell
 
 
 
 
+Route::get('/profile', 'CustomerPagesController@profile')->name('profile');
+Route::post('/profile', 'CustomerPagesController@profileData')->name('profile.data');
+Route::post('/profile/update', 'CustomerPagesController@update')->name('profile.update');
+Route::post('/profile/update-password', 'CustomerPagesController@updatePassword')->name('profile.update.password');
 
 
 

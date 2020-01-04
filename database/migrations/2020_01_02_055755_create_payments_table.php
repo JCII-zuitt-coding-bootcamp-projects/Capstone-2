@@ -16,6 +16,10 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
 
+
+            $table->unsignedBigInteger('bookable_id');
+            $table->foreign('bookable_id')->references('id')->on('bookables');
+            
             //the one reserve if through admin...
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('admins');

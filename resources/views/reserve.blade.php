@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
 
             <div class="card">
-                <div class="card-header text-center">{{ $bookable->name }}</div>
+                <div class="card-header text-center">Booking page</div>
                 {{-- ids --}}
                 <input type="hidden" id="bookable_id" value="{{ $bookable->id }}">
                 <input type="hidden" id="bookable_template_id" value="{{ $bookable->bookable_template_id }}">
@@ -40,8 +40,8 @@
                               <li class="list-group-item p-1">Start: {{$bookable->start_at->toDayDateTimeString()}}</li>
                               <li class="list-group-item p-1">End: &nbsp;{{$bookable->end_at->toDayDateTimeString()}} </li>
                             </ul>
-                            <a href="#" class="btn btn-info">Details</a>
-                            <a href="#" class="btn btn-warning ">Edit</a>
+                            {{-- <a href="#" class="btn btn-info">Details</a>
+                            <a href="#" class="btn btn-warning ">Edit</a> --}}
 
 
                         </div>

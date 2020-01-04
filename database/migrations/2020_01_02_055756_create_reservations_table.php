@@ -36,6 +36,7 @@ class CreateReservationsTable extends Migration
 
             $table->unsignedSmallInteger('price')->default(0);
 
+            $table->string('code', 8)->unique(); // for Qr code
 
             $table->timestamps();
         });

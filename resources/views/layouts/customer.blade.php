@@ -36,7 +36,7 @@
       margin: 0 auto 0 auto;
       position: relative;
       background-color: #fbfdff;
-      padding-top: 7rem;
+      padding-top: 4.4rem;
       min-height: 100vh;
 
     }
@@ -103,13 +103,13 @@
             <ul class="navbar-nav mr-auto">
 
               <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('reservation.services') }}">
                   <i class="material-icons float-left">search</i>
-                  Find Biz
+                  Find Services
                 </a>
               </li>
 
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link" href="#">
                   <i class="material-icons float-left">bookmark_border</i>
                   Bookmarked Biz
@@ -121,10 +121,10 @@
                   <i class="material-icons float-left">event_seat</i>
                   Check reservation
                 </a>
-              </li>
+              </li> --}}
 
               <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('reservation.index') }}">
                     <i class="material-icons float-left">assignment</i>
                     Reservations
                 </a>
@@ -140,8 +140,7 @@
                       Account
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Profile</a>
-                      <a class="dropdown-item" href="#">Edit profile</a>
+                      <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
 
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

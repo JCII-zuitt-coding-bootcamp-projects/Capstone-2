@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Bookable;
 use App\Reservation;
 use App\Payment;
-;
+
+
+use Illuminate\Support\Str;
 class ReservationController extends Controller
 {
     /**
@@ -18,14 +20,40 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        return view('reservations');
+    }
+
+    public function services()
+    {
+        // // return "nice!";
+        // $reservations = Payment::with('bookable.bookableTemplate','reservations')->latest()->get();
+        $bookables = Bookable::latest()->get();
+
+        return view('services',compact('bookables'));
+    }
+
+    public function getUserReservationsByPayment()
+    {
+        // return "nice!";
+        $reservations = Payment::with('bookable.bookableTemplate','reservations')->latest()->get();
+
+        return $reservations;
     }
 
 
+
+    
+
+
+
+    //for ajax
     public function getBookableReservations($bookable_id){
         $reservations = Reservation::where('bookable_id',$bookable_id)->pluck('cell_id');
         return $reservations;
     }
+
+
+
 
 
     public function newReservation(Request $request){
@@ -65,8 +93,8 @@ class ReservationController extends Controller
                 $payment = auth()->user()->payments()
                                         ->create([
                                             'total' => $total,
-                                            'method' => 'online_payment'
-
+                                            'method' => 'online_payment',
+                                            'bookable_id' => $bookable_id
                                         ]);
 
                 //subtract user credits
@@ -89,6 +117,7 @@ class ReservationController extends Controller
                                                     'bookable_item_name' => $bookable->bookableTemplate->bookable->{$cell}->name ,
                                                     'cell_id' => $cell ,
                                                     'price' => (int) $bookable->bookableTemplate->bookable->{$cell}->price ,
+                                                    'code' => Str::random(8)
                                                 ]);
                             } 
 

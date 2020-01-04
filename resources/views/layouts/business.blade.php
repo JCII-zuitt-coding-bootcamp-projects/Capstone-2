@@ -120,10 +120,11 @@
             </li>
           </ul>
 
-              <a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Overview</a>
+              {{-- <a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Overview</a> --}}
+              
 
               <!-- Reservations START -->
-              <a class="list-group-item list-group-item-action bg-secondary text-white"  data-toggle="collapse" href="#collapseExampleReservations" role="button" aria-expanded="false" aria-controls="collapseExampleReservations">
+              {{-- <a class="list-group-item list-group-item-action bg-secondary text-white"  data-toggle="collapse" href="#collapseExampleReservations" role="button" aria-expanded="false" aria-controls="collapseExampleReservations">
                 Reservations
                 <i class="material-icons float-right">keyboard_arrow_down</i>
               </a>
@@ -136,12 +137,12 @@
                       <i class="material-icons float-right">cancel_presentation</i>
                       Cancel Reservation
                   </a> 
-                </div>
+                </div> --}}
               <!-- Reservations End -->
 
 
               <!-- Tools START -->
-                <a class="list-group-item list-group-item-action bg-secondary text-white"  data-toggle="collapse" href="#collapseExampleTools" role="button" aria-expanded="false" aria-controls="collapseExampleTools">
+                {{-- <a class="list-group-item list-group-item-action bg-secondary text-white"  data-toggle="collapse" href="#collapseExampleTools" role="button" aria-expanded="false" aria-controls="collapseExampleTools">
                 Tools
                 <i class="material-icons float-right">keyboard_arrow_down</i>
               </a>
@@ -162,7 +163,7 @@
                       <i class="material-icons float-right">print</i>
                       Print ticket
                   </a> 
-                </div>
+                </div> --}}
               <!-- Tools End -->
 
 
@@ -217,17 +218,20 @@
                   </a> 
                 </div>
               <!-- Staff End -->
-
+              <a href="#" class="list-group-item list-group-item-action bg-secondary text-white">
+                  Verify ticket
+                  <i class="material-icons float-right">security</i>
+              </a>
 
               <ul class="list-group list-group mt-4">
                 <li class="list-group-item">
                     <i class="material-icons float-left text-secondary">calendar_today</i>
-                    Date: December 2, 2019
+                    Date: {{ Carbon\Carbon::now()->toFormattedDateString() }}
                 </li>
-                <li class="list-group-item">
+                {{-- <li class="list-group-item">
                     <i class="material-icons float-left text-secondary">access_time</i>
                     Time: 12:22 pm
-                </li>
+                </li> --}}
               </ul>
 
         </div>

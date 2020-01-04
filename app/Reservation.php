@@ -16,6 +16,7 @@ class Reservation extends Model
         'bookable_item_name',
         'cell_id' ,
         'price',
+        'code',
     ];
 
 
@@ -23,5 +24,10 @@ class Reservation extends Model
     public function payment()
     {
         return $this->belongsTo('App\Payment');
+    }
+
+    public function bookable()
+    {
+        return $this->belongsTo('App\Bookable');
     }
 }

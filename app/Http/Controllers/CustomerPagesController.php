@@ -35,4 +35,40 @@ class CustomerPagesController extends Controller
         return view('reserve', compact('bookable'));
     }
 
+
+    public function profile(){
+
+        
+        return view('profile');
+    }
+
+    public function profileData(){
+
+        return auth()->user();
+    }
+
+    public function update(Request $request){
+
+        // $request->validate([
+        //     'title' => 'required|unique:posts|max:255',
+        //     'author.name' => 'required',
+        //     'author.description' => 'required',
+        // ]);
+
+        $data = $request->only('name','address','email');
+        // return $data;
+        auth()->user()->update($data);
+        
+        return "Oks";
+
+    }
+
+    public function updatePassword(Request $request){
+
+        return $request;
+    }
+
+
+
+
 }
