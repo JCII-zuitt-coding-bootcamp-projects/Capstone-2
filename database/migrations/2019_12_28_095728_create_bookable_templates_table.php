@@ -27,8 +27,8 @@ class CreateBookableTemplatesTable extends Migration
             $table->foreign('business_id')->references('id')->on('businesses');
 
 
-            $table->text('children')->nullable()->default("[]"); //array string
-            $table->text('bookable')->nullable()->default("{}"); //array string
+            $table->longtext('children')->nullable(true);//->default("[]"); //array string
+            $table->longtext('bookable')->nullable(true);//->default("{}"); //array string
             $table->unsignedSmallInteger('total_bookable')->default(0);
             
             $table->timestamps();
