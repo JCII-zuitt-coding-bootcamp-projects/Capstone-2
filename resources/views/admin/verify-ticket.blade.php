@@ -20,9 +20,16 @@
 
 
 	<div class="container">
-		<video id="preview" style="width:100%;"></video>
+
 		<h6 class="text-center text-info">Scan QR Ticket</h6>
+		<video id="preview" style="width:100%;"></video>
+
+		<h6 class="text-center text-info mt-4">Or Enter Ticket Code</h6>
+
+		<input type="text" name="" v-model="code" class="form-control text-center" placeholder="Ticket Code">
+		<button class="btn btn-block btn-warning mt-2" @click="checkQrCode( code )" :disabled="code.length <= 7">Verify</button>
 	</div>
+
 
 
 		<div class="modal fade" id="errorsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -49,7 +56,7 @@
 	      <div class="modal-dialog" role="document">
 	        <div class="modal-content">
 	          <div class="modal-header">
-	            <h5 class="modal-title text-success" id="exampleModalLabel">Verified Ticket!</h5>
+	            <h5 class="modal-title text-success" id="exampleModalLabel">Verified Ticket</h5>
 	            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	              <span aria-hidden="true">&times;</span>
 	            </button>
@@ -77,7 +84,7 @@
 				                      <li class="list-group-item p-1">End: &nbsp;@{{ toReadableDateTime(ticketData.bookable.end_at) }} </li>
 				                    </ul>
 
-				                    <h5 class="text-center text-success">Verified Ticket!</h5>
+				                    <h5 class="text-center text-success">Verified Ticket</h5>
 				                    <h4 class="text-center text-secondary">Booked at:<br>@{{ ticketData.bookable_item_name }}</h4>
 
 				                </div>

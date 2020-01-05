@@ -24,7 +24,7 @@ var Verify = new Vue({
 		});
 		Instascan.Camera.getCameras().then(cameras => 
 		{
-			alert(cameras.length);
+			// alert(cameras.length);
 		    if(cameras.length > 0){
 		        scanner.start(cameras[0]);
 		    } else {
@@ -55,6 +55,7 @@ var Verify = new Vue({
   },
   data: {
     ticketData: null,
+    code : '',
 
   },
 
@@ -64,6 +65,8 @@ var Verify = new Vue({
 
 	    checkQrCode : function(code){
 
+	    	if(code == '')
+	    	return;
 	    	// alert("scanning..")
 	    	let url = "/admin/verify-ticket/" + code;
 
@@ -108,7 +111,7 @@ var Verify = new Vue({
 		formatName: function (name) {
 	      return name || '(unknown)';
 	    },
-	    
+
 	    selectCamera: function (camera) {
 	      this.activeCameraId = camera.id;
 	      this.scanner.start(camera);
