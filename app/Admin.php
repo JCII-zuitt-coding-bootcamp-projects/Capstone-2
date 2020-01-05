@@ -6,12 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use \Spatie\Tags\HasTags;
 
 class Admin  extends Authenticatable
 {
     use Notifiable;
 
-
+    use HasTags;
 
     protected $guard = 'admin';
 

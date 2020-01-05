@@ -81,6 +81,12 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
 
 
 
+	Route::get('/staff', 'StaffController@index')->name('staff.index');
+	Route::post('/staff', 'StaffController@getStaffs')->name('staff.getStaffs');
+
+	Route::get('/staff/create', 'StaffController@create')->name('staff.create');
+	Route::post('/staff/create', 'StaffController@store')->name('staff.store');
+	Route::post('/staff/update', 'StaffController@update')->name('staff.update');
 	
 
 	// {parent_cell : 'c_1',col :4,row : 3}

@@ -116,7 +116,9 @@
           <ul class="list-group list-group">
             <li class="list-group-item font-weight-light">
                 <i class="material-icons float-left text-secondary">account_box</i>
-                Login as: John Doe
+                Login as:
+                <br>
+                {{ auth('admin')->user()->email }}
             </li>
           </ul>
 
@@ -208,11 +210,11 @@
                 <i class="material-icons float-right">keyboard_arrow_down</i>
               </a>
                 <div class="collapse" id="collapseExampleStaff">
-                  <a href="#" class="list-group-item list-group-item-action ">
+                  <a href="{{ route('admin.staff.index') }}" class="list-group-item list-group-item-action ">
                       <i class="material-icons float-right">supervised_user_circle</i>
                       View all
                   </a> <!-- /Reserve -->
-                  <a href="#" class="list-group-item list-group-item-action ">
+                  <a href="{{ route('admin.staff.create') }}" class="list-group-item list-group-item-action ">
                       <i class="material-icons float-right">group_add</i>
                       Add new staff
                   </a> 

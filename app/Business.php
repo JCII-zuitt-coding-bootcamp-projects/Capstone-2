@@ -13,11 +13,13 @@ class Business extends Model
     ];
     
 
-    
+    //staffs
     public function admins()
     {
         return $this->hasMany('App\Admin');
     }
+
+
 
     public function bookableTemplates()
     {
