@@ -58,7 +58,14 @@
 
           <ul class="navbar-nav mr-auto">
 
-              <li class="nav-item active">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('reservation.services') }}">
+                  <i class="material-icons float-left">search</i>
+                  Find Services
+                </a>
+              </li>
+              
+              {{-- <li class="nav-item active">
                 <a class="nav-link" href="#">
                   <i class="material-icons float-left">search</i>
                   Find Business
@@ -78,7 +85,7 @@
                   <i class="material-icons float-left">business</i>
                   Business account
                 </a>
-              </li>
+              </li> --}}
 
               
             </ul>

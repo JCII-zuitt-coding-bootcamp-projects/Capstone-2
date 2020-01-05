@@ -49,23 +49,43 @@ class CustomerPagesController extends Controller
 
     public function update(Request $request){
 
-        // $request->validate([
-        //     'title' => 'required|unique:posts|max:255',
-        //     'author.name' => 'required',
-        //     'author.description' => 'required',
-        // ]);
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required|min:5',
+            'address' => 'required|min:5',
+            'email' => 'required|email'
+        ]);
+        
+        if ($validator->fails())
+        {
+            return response()->json(['success'=> false, 'errors'=>$validator->errors()->all()]);
+        }
+
 
         $data = $request->only('name','address','email');
         // return $data;
         auth()->user()->update($data);
         
-        return "Oks";
+        return response()->json(['success'=> true, 'msg'=>'Profile updated Successfully!']);
+
 
     }
 
     public function updatePassword(Request $request){
 
-        return $request;
+        $validator = \Validator::make($request->all(), [
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        
+        if ($validator->fails())
+        {
+            return response()->json(['success'=> false, 'errors'=>$validator->errors()->all()]);
+        }
+
+
+        $user = auth()->user();
+        $user->password = \Hash::make($request->password);
+        $user->save();
+        return response()->json(['success'=> true, 'msg'=>'Password updated Successfully!']);
     }
 
 

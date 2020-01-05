@@ -35,7 +35,8 @@ class ReservationController extends Controller
     public function getUserReservationsByPayment()
     {
         // return "nice!";
-        $reservations = Payment::with('bookable.bookableTemplate','reservations')->latest()->get();
+        // $reservations = Payment::with('bookable.bookableTemplate','reservations')->latest()->get();
+        $reservations = auth()->user()->payments()->with('bookable.bookableTemplate','reservations')->latest()->get();
 
         return $reservations;
     }

@@ -15,7 +15,7 @@
 
   <div class="container p-sm-0 p-md-5 " id="reservations">
     
-
+    <h6 class="text-info mt-5 text-center" v-if="reservation_payments.length == 0">You have no reservations.</h6>
     <div v-for="payment in reservation_payments" class="mt-3">
         
         <h6 class="text-info text-center">

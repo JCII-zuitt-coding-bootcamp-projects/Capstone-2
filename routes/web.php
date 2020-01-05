@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     // return view('welcome');
-    return redirect('home');
+    return redirect()->route('reservation.services');
 });
 
 // User auth
@@ -22,7 +22,11 @@ Auth::routes();
 // Admin
 
 
-Route::get('/home', 'CustomerPagesController@index')->name('home');
+Route::get('/home', function () {
+    // return view('welcome');
+    return redirect()->route('reservation.services');
+})->name('home');
+
 Route::get('/reserve/{bookable_id}', 'CustomerPagesController@reserve')->name('reserve');
 
 Route::get('/services', 'ReservationController@services')->name('reservation.services');
