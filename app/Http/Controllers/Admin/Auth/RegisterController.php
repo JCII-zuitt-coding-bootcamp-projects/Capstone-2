@@ -93,6 +93,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+
+        $admin->attachTags(['bookable_schedule','bookable_template','staff','verify_ticket']); // roles
+
         return $admin;
     }
 

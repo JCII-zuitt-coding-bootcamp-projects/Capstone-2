@@ -204,9 +204,9 @@ var CellData = new Vue({
 			.then((responseData) => {
 
 			  // console.log('Success:', responseData);
-	    		this.cells.children = responseData.children;
-	    		this.cells.bookable = responseData.bookable;
-	    		console.log(responseData.bookable);
+	    		this.cells.children = responseData.children == null ? [] : responseData.children;
+	    		this.cells.bookable = responseData.bookable == null ? {} : responseData.bookable;
+	    		// console.log(responseData.bookable);
 
 	    		this.name = responseData.name;
 	    		this.notes = responseData.notes;

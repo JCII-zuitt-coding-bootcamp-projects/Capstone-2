@@ -104,7 +104,7 @@ class BookableTemplateController extends Controller
 
         $new = auth('admin')->user()->bookableTemplates()->create( $data );
 
-        return redirect()->route('admin.bookable.templates.edit' , ['id' => $new->id ]);
+        return redirect()->route('admin.bookable.templates.edit' , ['id' => $new->id ])->with('success', ['New template added successfully.']);
         // return "nuice";
 
     }
