@@ -12,7 +12,7 @@ class StaffController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth_admin');
+        $this->middleware(['auth_admin','allow_on_staff']);
     }
     
     /**
@@ -23,6 +23,11 @@ class StaffController extends Controller
     public function index()
     {
         //
+
+        // $check = Admin::where('id', auth('admin')->user()->id )->withAnyTags(['bookable_template'])->count();
+        // $check = Admin::where('id', auth('admin')->user()->id )->withAnyTags(['bookable_template'])->count();
+
+
         $auth = auth('admin')->user();
         $business = $auth->business;
         $staffs = $business->admins;
@@ -105,7 +110,7 @@ class StaffController extends Controller
         // dd($request->all());
 
 
-        return redirect()->route('admin.staff.index');
+        return redirect()->route('admin.staff.index')->with('success', ['New Staff Added.']);
        
     }
 
@@ -160,7 +165,7 @@ class StaffController extends Controller
         $staff = Admin::find($request->id);
         $staff->update($data);
         $staff->syncTags($request->tagsz);
-        
+
         return response()->json(['success'=> true, 'msg'=>'Staff updated successfully!']);
     }
 

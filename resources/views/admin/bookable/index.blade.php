@@ -18,11 +18,11 @@
 
           <div class="card mb-4">
             <div class="card-header">
-                Seats: <strong class="text-secondary">50/100</strong>
+                Seats: <strong class="text-secondary">{{ $bookable->reservations_count }}/100</strong>
 
               
                 <span class="float-right">
-                  Status: <strong class="text-secondary">Ongoing/Starting after 20 minustes/Ended</strong>
+                  {{-- Status: <strong class="text-secondary">Ongoing/Starting after 20 minustes/Ended</strong> --}}
                 </span>
               
             </div>
@@ -45,7 +45,7 @@
                       <li class="list-group-item p-1">Start: {{$bookable->start_at->toDayDateTimeString()}}</li>
                       <li class="list-group-item p-1">End: &nbsp;{{$bookable->end_at->toDayDateTimeString()}} </li>
                     </ul>
-                    <a href="#" class="btn btn-info">Details</a>
+                    <a href="#" class="btn btn-info">Reservations</a>
                     <a href="#" class="btn btn-warning ">Edit</a>
 
 

@@ -64,6 +64,12 @@ class Kernel extends HttpKernel
 
         // Made by me
         'auth_admin' => \App\Http\Middleware\AuthenticateAdmin::class,
+
+        'allow_on_bookable_schedule' => \App\Http\Middleware\AllowBookableSched::class,
+        'allow_on_bookable_template' => \App\Http\Middleware\AllowBookableTemplate::class,
+        'allow_on_staff' => \App\Http\Middleware\AllowStaffEditing::class,
+        'allow_on_verify_ticket' => \App\Http\Middleware\AllowVerifyTicket::class,
+
     ];
 
     /**

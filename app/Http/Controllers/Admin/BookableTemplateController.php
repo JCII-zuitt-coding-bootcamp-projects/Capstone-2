@@ -19,6 +19,38 @@ class BookableTemplateController extends Controller
         $this->middleware('auth_admin');
     }
 
+
+    public function copy($template_id){
+
+        $to_copy = BookableTemplate::find($template_id);
+
+
+        // $data['business_id'] = auth('admin')->user()->business_id;
+
+        $new = auth('admin')->user()->bookableTemplates()->create([
+            'name' => $to_copy->name . ' Copy',
+            'notes' => $to_copy->notes ,
+            'category' => $to_copy->category ,
+            'admin_id' => auth('admin')->user()->id ,
+            'children' => json_encode($to_copy->children) ,
+            'bookable' => json_encode($to_copy->bookable) ,
+            'total_bookable' => $to_copy->total_bookable ,
+            'business_id' => $to_copy->business_id ,
+
+         ]);
+
+        return redirect()->route('admin.bookable.templates.edit' , ['id' => $new->id ])->with('success', ['Template successfully copied.']);
+    }
+
+    public function delete($template_id){
+
+        BookableTemplate::destroy($template_id);
+
+        return redirect()->route('admin.bookable.templates.index')->with('success', ['Template successfully deleted.']);
+    }
+
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -140,8 +172,24 @@ class BookableTemplateController extends Controller
         // return "nice:" . $id;
     }
 
-    public function updateTemplateData($id)
+    public function updateTemplateData(Request $request, $id)
     {
+
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required|min:5',
+            'notes' => 'required',
+            'category' => 'required',
+        ]);
+        
+        if ($validator->fails())
+        {
+            return response()->json(['success'=> false, 'errors'=>$validator->errors()->all()]);
+        }
+
+
+        // $data = $request->only('name','notes','category');
+
+        // =============
         $newData =  request()->all();
 
         // dd($newData);
@@ -159,8 +207,10 @@ class BookableTemplateController extends Controller
         // BookableTemplate
         // $encodedNewChildrenData =  $newChildrenData;//json_encode()
        
-        return BookableTemplate::where('id', $id)
+        BookableTemplate::where('id', $id)
                                 ->update( $newData ); // children and bookable
+
+        return response()->json(['success'=> true, 'msg'=>'Changes saved!']);
 
     }
 

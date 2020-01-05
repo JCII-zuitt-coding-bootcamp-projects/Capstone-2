@@ -21,6 +21,11 @@ class Business extends Model
 
 
 
+    public function bookables()
+    {
+        return $this->hasMany('App\Bookable');
+    }
+
     public function bookableTemplates()
     {
         return $this->hasMany('App\BookableTemplate');

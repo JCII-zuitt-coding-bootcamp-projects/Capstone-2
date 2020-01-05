@@ -44,7 +44,7 @@ var CellData = new Vue({
 
     },
 
-
+    errors : null, // for displaying of errors in ajax
   },
 
 
@@ -203,7 +203,7 @@ var CellData = new Vue({
 			.then((response) => response.json())
 			.then((responseData) => {
 
-			  console.log('Success:', responseData);
+			  // console.log('Success:', responseData);
 	    		this.cells.children = responseData.children;
 	    		this.cells.bookable = responseData.bookable;
 	    		console.log(responseData.bookable);
@@ -246,14 +246,25 @@ var CellData = new Vue({
 			  body: JSON.stringify({
 			  		children : this.cells.children,
 			  		bookable : this.cells.bookable,
-			  		total_bookable : Object.keys(this.cells.bookable).length
+			  		total_bookable : Object.keys(this.cells.bookable).length,
+			  		name : this.name,
+					notes : this.notes,
+					category : this.category,
 
 			  	}),
 			})
 			.then((response) => response.json())
 			.then((responseData) => {
-			  // console.log('Success:', responseData);
-			  console.log("Changes Saved!");
+			  
+			  	if(responseData.success){
+	    			$("#success_msg").text(responseData.msg);
+	    			$("#successModal").modal("show");
+
+	    		}else{
+	    			// error
+	    			this.errors = responseData.errors;
+	    			$("#errorsModal").modal("show");
+	    		}
 
 			})
 			.catch((error) => {

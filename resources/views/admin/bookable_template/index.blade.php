@@ -26,13 +26,17 @@
               <h5 class="card-title">{{ $template->name }}</h5>
               <p class="card-text">Notes: <em> {{ $template->notes }} </em> </p>
 
-              <a href="#" class="btn btn-info">Copy template</a>
-              @if($template->bookables_count == 0 )
-                <span class="float-right">
-                  <a href="#" class="btn btn-danger">Delete</a>
-                  <a href="{{ route('admin.bookable.templates.edit' , ['id' => $template->id ]) }}" class="btn btn-warning ">Edit</a>
-                </span>
-              @endif
+              
+              
+                
+                  <a href="{{ route('admin.bookable.templates.delete', ['template_id' => $template->id ] ) }}" class="btn btn-danger @if($template->bookables_count > 0 ) disabled @endif">Delete</a>
+                  <a href="{{ route('admin.bookable.templates.edit' , ['id' => $template->id ]) }}" class="btn btn-warning @if($template->bookables_count > 0 ) disabled @endif">Edit</a>
+                
+                @if($template->bookables_count > 0 )
+                  <label class="text-danger">(Cannot edit or delete, used in {{ $template->bookables_count }} schedules)</label>
+                @endif
+                
+                <a href="{{ route('admin.bookable.templates.copy', ['template_id' => $template->id ] ) }}" class="btn btn-info float-right ">Copy template</a>
               
 
             </div>

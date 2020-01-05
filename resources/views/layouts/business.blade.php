@@ -113,14 +113,16 @@
         <div class="sidebar-heading bg-dark text-white ">EasyBiz</div>
         <div class="list-group list-group-flush pt-3">
 
-          <ul class="list-group list-group">
-            <li class="list-group-item font-weight-light">
-                <i class="material-icons float-left text-secondary">account_box</i>
-                Login as:
-                <br>
-                {{ auth('admin')->user()->email }}
-            </li>
-          </ul>
+          @auth('admin')
+            <ul class="list-group list-group">
+              <li class="list-group-item font-weight-light">
+                  <i class="material-icons float-left text-secondary">account_box</i>
+                  Login as:
+                  <br>
+                  {{ auth('admin')->user()->email }}
+              </li>
+            </ul>
+          @endauth
 
               {{-- <a href="#" class="list-group-item list-group-item-action bg-secondary text-white">Overview</a> --}}
               
@@ -171,7 +173,7 @@
 
               <!-- Bookable START -->
                 <a class="list-group-item list-group-item-action bg-secondary text-white mt-2"  data-toggle="collapse" href="#collapseExampleBookable" role="button" aria-expanded="false" aria-controls="collapseExampleBookable">
-                Bookables
+                Bookable Schedules
                 <i class="material-icons float-right">keyboard_arrow_down</i>
               </a>
                 <div class="collapse" id="collapseExampleBookable">
@@ -220,7 +222,7 @@
                   </a> 
                 </div>
               <!-- Staff End -->
-              <a href="#" class="list-group-item list-group-item-action bg-secondary text-white">
+              <a href=" {{ route('admin.verify.ticket')}} " class="list-group-item list-group-item-action bg-secondary text-white">
                   Verify ticket
                   <i class="material-icons float-right">security</i>
               </a>
@@ -253,7 +255,9 @@
         <i class="material-icons text-white"  id="menu-toggle">keyboard_arrow_left</i>
 
         <span class="text-white">
-          Market Cinemas
+          @auth('admin')
+            {{ auth('admin')->user()->business->name }}
+          @endauth
         </span>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -306,6 +310,17 @@
       </nav >
 
       <div class="container-fluid pt-5">
+        
+
+        @if (session('success'))
+          <div class="alert alert-success alert-dismissible fade show mx-4" role="alert">
+              <strong> {{ session('success')[0] }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+        @endif
+
         @yield('content')
       </div>
     </div>

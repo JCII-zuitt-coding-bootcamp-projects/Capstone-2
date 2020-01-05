@@ -16,7 +16,7 @@ class BookableController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth_admin');
+        $this->middleware(['auth_admin','allow_on_bookable_schedule']);
     }
     
     /**
@@ -28,8 +28,10 @@ class BookableController extends Controller
     {
         //
         $bookables = Bookable::where('business_id', auth('admin')->user()->business_id )
+                                            ->withCount('reservations')
                                             ->latest()
                                             ->get();
+        // dd($bookables);
         return view( 'admin.bookable.index' ,compact('bookables'));
 
     }
@@ -100,7 +102,7 @@ class BookableController extends Controller
 
 
 
-        return redirect()->route('admin.bookable.index' );
+        return redirect()->route('admin.bookable.index' )->with('success', ['New bookable schedule added.']);
 
 
     }
