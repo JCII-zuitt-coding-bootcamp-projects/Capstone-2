@@ -29,6 +29,7 @@ class BookableController extends Controller
         //
         $bookables = Bookable::where('business_id', auth('admin')->user()->business_id )
                                             ->withCount('reservations')
+                                            ->with('bookableTemplate')
                                             ->latest()
                                             ->get();
         // dd($bookables);
