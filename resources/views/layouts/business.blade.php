@@ -171,7 +171,22 @@
               <!-- Tools End -->
 
 
-              
+              <!-- Bookable START -->
+                <a class="list-group-item list-group-item-action bg-secondary text-white mt-2"  data-toggle="collapse" href="#collapseExampleBookable" role="button" aria-expanded="false" aria-controls="collapseExampleBookable">
+                Bookable Schedules
+                <i class="material-icons float-right">keyboard_arrow_down</i>
+              </a>
+                <div class="collapse" id="collapseExampleBookable">
+                  <a href="{{ route('admin.bookable.index') }}" class="list-group-item list-group-item-action ">
+                      <i class="material-icons float-right">visibility</i>
+                      View all
+                  </a>
+                  <a href="{{ route('admin.bookable.create') }}" class="list-group-item list-group-item-action ">
+                      <i class="material-icons float-right">add_to_photos</i>
+                      Add new bookable
+                  </a>
+                </div>
+              <!-- Bookable End -->
 
 
               <!-- Templates Templates START -->
@@ -191,26 +206,6 @@
                 </div>
               <!-- Templates Templates End -->
 
-
-
-              <!-- Bookable START -->
-                <a class="list-group-item list-group-item-action bg-secondary text-white mt-2"  data-toggle="collapse" href="#collapseExampleBookable" role="button" aria-expanded="false" aria-controls="collapseExampleBookable">
-                Bookable Schedules
-                <i class="material-icons float-right">keyboard_arrow_down</i>
-              </a>
-                <div class="collapse" id="collapseExampleBookable">
-                  <a href="{{ route('admin.bookable.index') }}" class="list-group-item list-group-item-action ">
-                      <i class="material-icons float-right">visibility</i>
-                      View all
-                  </a>
-                  <a href="{{ route('admin.bookable.create') }}" class="list-group-item list-group-item-action ">
-                      <i class="material-icons float-right">add_to_photos</i>
-                      Add new bookable
-                  </a>
-                </div>
-              <!-- Bookable End -->
-
-              
               <!-- Staff START -->
               <a class="list-group-item list-group-item-action bg-secondary text-white"  data-toggle="collapse" href="#collapseExampleStaff" role="button" aria-expanded="false" aria-controls="collapseExampleStaff">
                 Staff
