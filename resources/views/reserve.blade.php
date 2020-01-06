@@ -70,7 +70,7 @@
                         <div class="col-sm-12 mt-2">
                             <center>
                                 <ul class="list-group list-group-horizontal-sm justify-content-center">
-                                  <li class="list-group-item p-1"><div style="width: 20px; height: 20px; background-color: #eee"></div> Available</li>
+                                  <li class="list-group-item p-1"><div style="width: 20px; height: 20px; background-color: #75d68b"></div> Available</li>
                                   <li class="list-group-item p-1"><div style="width: 20px; height: 20px; background-color: #999898"></div> Reserved</li>
                                   <li class="list-group-item p-1"><div style="width: 20px; height: 20px; background-color: #48afde"></div> Selected</li>
                                 </ul>

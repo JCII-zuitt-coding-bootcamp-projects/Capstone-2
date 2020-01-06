@@ -153,7 +153,7 @@ Vue.component('cell', {
             return '#999898'; // already reserved
       }
 
-      return '#eee'; // available
+      return '#75d68b'; // available
 
       // if( this.reservations.includes( cid ) ){
 
