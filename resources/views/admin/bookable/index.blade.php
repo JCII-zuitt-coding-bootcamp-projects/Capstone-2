@@ -45,8 +45,8 @@
                       <li class="list-group-item p-1">Start: {{$bookable->start_at->toDayDateTimeString()}}</li>
                       <li class="list-group-item p-1">End: &nbsp;{{$bookable->end_at->toDayDateTimeString()}} </li>
                     </ul>
-                    <a href="#" class="btn btn-info">Reservations</a>
-                    <a href="#" class="btn btn-warning ">Edit</a>
+                    {{-- <a href="#" class="btn btn-info">Reservations</a>
+                    <a href="#" class="btn btn-warning ">Edit</a> --}}
 
 
                 </div>
