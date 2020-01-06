@@ -18,7 +18,7 @@
 
           <div class="card mb-4">
             <div class="card-header">
-                Seats: <strong class="text-secondary">{{ $bookable->reservations_count }}/{{ $bookable->bookable_template->total_bookable }}</strong>
+                Seats: <strong class="text-secondary">{{ $bookable->reservations_count }}/{{ $bookable->bookableTemplate->total_bookable }}</strong>
 
               
                 <span class="float-right">
