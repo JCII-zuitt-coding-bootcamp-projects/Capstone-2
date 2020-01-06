@@ -16,7 +16,7 @@ class BookableTemplateController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth_admin');
+        $this->middleware('auth_admin')->except('getTemplateData');
     }
 
 

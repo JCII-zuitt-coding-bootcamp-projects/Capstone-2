@@ -106,7 +106,7 @@ var TemplateCellData = new Vue({
 
 	    initTemplateData : function(){
 	    	let url = "/admin/template/"+ this.template_id + "/data";
-	    	alert("initTemplateData...");
+	    	
 	    	fetch(url, {
 			  method: 'POST', // or 'PUT'
 			  headers: {
