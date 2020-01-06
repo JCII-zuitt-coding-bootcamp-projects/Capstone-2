@@ -4,9 +4,10 @@ var TemplateCellData = new Vue({
   mounted() {
   	// alert("started");
   	
+  	this.initTemplateData();
   	this.proportionParentHeightWidth();
   	this.getReservations();
-  	this.initTemplateData();
+  	
   	
   },
   data: {
