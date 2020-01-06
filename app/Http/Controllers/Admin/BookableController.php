@@ -32,6 +32,7 @@ class BookableController extends Controller
                                             ->with('bookableTemplate')
                                             ->latest()
                                             ->get();
+        dd($bookables);
         // dd($bookables);
         return view( 'admin.bookable.index' ,compact('bookables'));
 
