@@ -113,7 +113,7 @@ Vue.component('cell', {
       		
       	}
       }else{
-        alert("dddzz");
+        // alert("dddzz");
       }
     },
 
