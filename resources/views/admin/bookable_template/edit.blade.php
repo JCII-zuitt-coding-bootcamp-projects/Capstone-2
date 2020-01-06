@@ -112,8 +112,8 @@
 
             <div >
                 <select class="form-control form-control-lg" v-model="selector.phase">
-                  <option value="Divisioning">Cell Divisioning</option>
-                  <option value="Bookable">Bookable assigning</option>
+                  <option value="Divisioning">Cell Division</option>
+                  <option value="Bookable">Bookable assignment</option>
                   {{-- <option value="Designing">Cell Designing</option>
                   <option value="FinalLook">Final look</option> --}}
 
