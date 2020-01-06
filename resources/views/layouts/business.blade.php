@@ -288,9 +288,9 @@
                     Account
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Business profile</a>
+                    {{-- <a class="dropdown-item" href="#">Business profile</a>
                     <a class="dropdown-item" href="#">Edit profile</a>
-                    <a class="dropdown-item" href="#">My privilages</a>
+                    <a class="dropdown-item" href="#">My privilages</a> --}}
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
