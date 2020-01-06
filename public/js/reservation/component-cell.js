@@ -95,20 +95,26 @@ Vue.component('cell', {
     },
 
     checkAction : function ( num ){
-      let cid = this.cId( num );
-    	// return an action for parent cells
-    	if( this.hasChild( cid ) ){
-    		// console.log('The program run in a parent cell');
-    		return null;
-    	}else{
-    		//pure child action
+      if( this.bookable[ this.cId( num ) ] != undefined ){
 
-        //dapat di pa selected para pwede e reserve
-        if( !this.reservations.includes( cid ) ){
-          this.selector_controller.toggleAddCellID( this.cId( num ) );
-        }
-    		
-    	}
+        
+        let cid = this.cId( num );
+      	// return an action for parent cells
+      	if( this.hasChild( cid ) ){
+      		// console.log('The program run in a parent cell');
+      		return null;
+      	}else{
+      		//pure child action
+
+          //dapat di pa selected para pwede e reserve
+          if( !this.reservations.includes( cid ) ){
+            this.selector_controller.toggleAddCellID( this.cId( num ) );
+          }
+      		
+      	}
+      }else{
+        alert("dddzz");
+      }
     },
 
     // @dblclick="checkActionDblClick(num)"
