@@ -6,6 +6,12 @@ var Staff = new Vue({
   mounted() {
   	// alert("started");
   	
+  	$('#loading_data').modal({
+	    backdrop: 'static',
+	    keyboard: false
+	})
+  	$("#loading_data").modal('show');
+
   	this.staffs();
   	
   },
@@ -53,6 +59,9 @@ var Staff = new Vue({
 
 	    		this.biz_staffs = responseData;
 
+			  	$("#loading_data").modal('hide');
+
+
 			})
 			.catch((error) => {
 			  // console.error('Error:', error);
@@ -63,6 +72,13 @@ var Staff = new Vue({
 
 
 	    update:  function(){
+
+	    	$("#editStaff").modal("hide");
+	    	$('#updating_data').modal({
+			    backdrop: 'static',
+			    keyboard: false
+			})
+		  	$("#updating_data").modal('show');
 
 
 	    	let url = "/admin/staff/update";
@@ -79,10 +95,13 @@ var Staff = new Vue({
 			.then((response) => response.json())
 			.then((responseData) => {
 
+		  			$("#updating_data").modal('hide');
+
+
 	    		if(responseData.success){
 	    			$("#success_msg").text(responseData.msg);
 	    			$("#successModal").modal("show");
-	    			$("#editStaff").modal("hide");
+	    			
 
 	    		}else{
 	    			// error

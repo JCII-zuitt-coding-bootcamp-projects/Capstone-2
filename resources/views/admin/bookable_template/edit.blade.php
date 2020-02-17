@@ -30,7 +30,9 @@
                 	</cell>
 
                 </div>
-
+                <center>
+                  <label class="text-center text-warning">(Click the cell above to design)</label>
+                </center>
 
                 <form class="mt-4">
                   <div class="form-group row">
@@ -175,7 +177,7 @@
                       <div class="form-group row">
                         <label for="inputPassword" class="col-sm-4 col-form-label" >Name/code:</label>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control" v-model="name" min="1" max="5" :disabled="selector.selected.length == 0">
+                          <input type="text" class="form-control" v-model="name" min="1" max="5" :disabled="selector.selected.length == 0" placeholder="ex. S1">
                         </div>
                       </div>
 

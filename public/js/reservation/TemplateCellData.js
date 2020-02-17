@@ -7,6 +7,13 @@ var TemplateCellData = new Vue({
   	this.proportionParentHeightWidth();
   	this.getReservations();
   	this.initTemplateData();
+
+  	$('#loading_data').modal({
+	    backdrop: 'static',
+	    keyboard: false
+	})
+  	$("#loading_data").modal('show');
+  	// alert("nice")
   	
   },
   data: {
@@ -67,6 +74,13 @@ var TemplateCellData = new Vue({
   		reserve : function(){
   			// console.log("nice");
 
+  			$('#processing_reservation').modal({
+			    backdrop: 'static',
+			    keyboard: false
+			})
+		  	$("#processing_reservation").modal('show');
+
+
   			let url = "/reservations/"+ this.bookable_id + "/new";
 
 	    	fetch(url, {
@@ -83,6 +97,9 @@ var TemplateCellData = new Vue({
 			})
 			.then((response) => response.json())
 			.then((responseData) => {
+
+
+					$("#processing_reservation").modal('hide');
 
 				  // console.log('Success:', responseData);
 				  this.ajax_response = responseData;
@@ -129,7 +146,7 @@ var TemplateCellData = new Vue({
 	    		this.category = responseData.category;
 	    		this.total_bookable = responseData.total_bookable;
 	    		
-
+	    		$("#loading_data").modal('hide');
 
 
 			})

@@ -59,6 +59,11 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
 	// Admin auth
 	Auth::routes();
 
+	Route::get('/', function () {
+	    return redirect()->route('admin.home');
+	});
+
+
 	Route::get('/home', 'PagesController@index')->name('home');
 	Route::get('/not-authorized', function(){
 		return view('admin.not_authorized');

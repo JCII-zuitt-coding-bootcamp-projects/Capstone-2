@@ -6,6 +6,12 @@ var Profile = new Vue({
   mounted() {
   	// alert("started");
   	
+  	$('#loading_data').modal({
+	    backdrop: 'static',
+	    keyboard: false
+	})
+  	$("#loading_data").modal('show');
+
   	this.getUserInfo();
   	
   },
@@ -44,6 +50,8 @@ var Profile = new Vue({
 	    		// this.reservations = responseData;
 
 	    		this.profile = responseData;
+  				$("#loading_data").modal('hide');
+
 
 			})
 			.catch((error) => {
@@ -55,6 +63,12 @@ var Profile = new Vue({
 
 
 	    update:  function(){
+
+	    	$('#updating_data').modal({
+			    backdrop: 'static',
+			    keyboard: false
+			})
+		  	$("#updating_data").modal('show');
 
 
 	    	let url = "/profile/update";
@@ -70,6 +84,9 @@ var Profile = new Vue({
 			})
 			.then((response) => response.json())
 			.then((responseData) => {
+
+
+			  	$("#updating_data").modal('hide');
 
 	    		if(responseData.success){
 	    			$("#success_msg").text(responseData.msg);
@@ -93,6 +110,12 @@ var Profile = new Vue({
 
 	    updatePassword:  function(){
 
+	    	$('#updating_data').modal({
+			    backdrop: 'static',
+			    keyboard: false
+			})
+		  	$("#updating_data").modal('show');
+
 
 	    	let url = "/profile/update-password";
 
@@ -107,6 +130,9 @@ var Profile = new Vue({
 			})
 			.then((response) => response.json())
 			.then((responseData) => {
+
+
+		  	$("#updating_data").modal('hide');
 
 			  if(responseData.success){
 	    			$("#success_msg").text(responseData.msg);

@@ -6,6 +6,12 @@ var Reservations = new Vue({
   mounted() {
   	// alert("started");
   	
+  	$('#loading_data').modal({
+	    backdrop: 'static',
+	    keyboard: false
+	})
+  	$("#loading_data").modal('show');
+
   	this.getUserReservationsByPayment();
   	
   },
@@ -40,6 +46,7 @@ var Reservations = new Vue({
 	    		// this.reservations = responseData;
 
 	    		this.reservation_payments = responseData;
+	    		$("#loading_data").modal('hide');
 
 			})
 			.catch((error) => {

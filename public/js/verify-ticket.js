@@ -65,8 +65,17 @@ var Verify = new Vue({
 
 	    checkQrCode : function(code){
 
+
 	    	if(code == '')
 	    	return;
+
+
+	    	$('#loading_data').modal({
+			    backdrop: 'static',
+			    keyboard: false
+			})
+		  	$("#loading_data").modal('show');
+
 	    	// alert("scanning..")
 	    	let url = "/admin/verify-ticket/" + code;
 
@@ -81,6 +90,9 @@ var Verify = new Vue({
 			})
 			.then((response) => response.json())
 			.then((responseData) => {
+
+
+		  		$("#loading_data").modal('hide');
 
 	    		if(responseData.success){
 	    			this.ticketData = responseData.data;

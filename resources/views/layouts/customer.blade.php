@@ -58,7 +58,7 @@
 
           <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('reservation.services') }}">
                   <i class="material-icons float-left">search</i>
                   Find Services
@@ -109,10 +109,10 @@
 
             <ul class="navbar-nav mr-auto">
 
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route('reservation.services') }}">
                   <i class="material-icons float-left">search</i>
-                  Find Services
+                  &nbsp;&nbsp;Find Services
                 </a>
               </li>
 
@@ -133,7 +133,7 @@
               <li class="nav-item ">
                 <a class="nav-link" href="{{ route('reservation.index') }}">
                     <i class="material-icons float-left">assignment</i>
-                    Reservations
+                    &nbsp;&nbsp;My Reservations
                 </a>
               </li>
 
@@ -144,7 +144,7 @@
               <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons float-left">account_circle</i>
-                      Account
+                      &nbsp;&nbsp;Account
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>

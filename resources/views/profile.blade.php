@@ -106,4 +106,33 @@
     <button class="text-center btn btn-success btn-block" v-if="edit_mode_password" @click="updatePassword()" :disabled="!pass.password && !pass.password_confirmation">Update Password</button>
     <button class="text-center btn btn-secondary btn-block" v-if="edit_mode_password" @click="edit_mode_password = false" >Cancel</button>
 </div>
+
+
+<div class="modal fade" id="loading_data" tabindex="-1" role="dialog" aria-labelledby="loading_data" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Loading data</h5>
+      </div>
+      <div class="modal-body">
+        Please wait...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updating_data" tabindex="-1" role="dialog" aria-labelledby="loading_data" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Updating data</h5>
+      </div>
+      <div class="modal-body">
+        Please wait...
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection

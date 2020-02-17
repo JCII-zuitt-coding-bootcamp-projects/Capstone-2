@@ -3,6 +3,13 @@ var CellData = new Vue({
 
   mounted() {
   	// alert("started");
+
+  	$('#loading_data').modal({
+	    backdrop: 'static',
+	    keyboard: false
+	})
+  	$("#loading_data").modal('show');
+
   	
   	this.initTemplateData();
   },
@@ -214,6 +221,7 @@ var CellData = new Vue({
 	    		this.total_bookable = responseData.total_bookable;
 	    		
 
+	    		$("#loading_data").modal('hide');
 
 
 			})
@@ -236,6 +244,12 @@ var CellData = new Vue({
 
 	    saveChanges : function(){
 	    	
+	    	$('#updating_data').modal({
+			    backdrop: 'static',
+			    keyboard: false
+			})
+		  	$("#updating_data").modal('show');
+
 	    	console.log(this.cells.bookable);
 	    	fetch("/admin/template/"+ this.template_id + "/update", {
 			  method: 'POST', // or 'PUT'
@@ -255,7 +269,11 @@ var CellData = new Vue({
 			})
 			.then((response) => response.json())
 			.then((responseData) => {
-			  
+			  	
+
+		  		$("#updating_data").modal('hide');
+
+
 			  	if(responseData.success){
 	    			$("#success_msg").text(responseData.msg);
 	    			$("#successModal").modal("show");

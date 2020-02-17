@@ -146,6 +146,34 @@
                       </div>
                     </div>
 
+                    <!-- Modal -->
+                      <div class="modal show" id="loading_data" tabindex="-1" role="dialog" aria-labelledby="loading_data" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title text-center" id="exampleModalLabel">Loading data</h5>
+                            </div>
+                            <div class="modal-body">
+                              Please wait...
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal show" id="processing_reservation" tabindex="-1" role="dialog" aria-labelledby="loading_data" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title text-center" id="exampleModalLabel">Processing reservation</h5>
+                            </div>
+                            <div class="modal-body">
+                              Please wait...
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
 
 
 
@@ -156,4 +184,8 @@
 
     </div>
 </div>
+
+
+
+
 @endsection

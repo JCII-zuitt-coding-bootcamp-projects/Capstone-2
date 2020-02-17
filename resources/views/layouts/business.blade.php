@@ -110,7 +110,11 @@
       <div class="sticky-top">
         
       
-        <div class="sidebar-heading bg-dark text-white ">EasyBiz</div>
+        <div class="sidebar-heading bg-dark  ">
+            <a href="{{ route('admin.home') }}" class="text-white">
+              EasyBiz
+            </a>
+        </div>
         <div class="list-group list-group-flush pt-3">
 
           @auth('admin')
@@ -329,6 +333,33 @@
   </div>
   <!-- /#wrapper -->
 
+
+<div class="modal fade" id="loading_data" tabindex="-1" role="dialog" aria-labelledby="loading_data" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Loading data</h5>
+      </div>
+      <div class="modal-body">
+        Please wait...
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updating_data" tabindex="-1" role="dialog" aria-labelledby="loading_data" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Updating data</h5>
+      </div>
+      <div class="modal-body">
+        Please wait...
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </main> <!-- most outer container -->
