@@ -177,7 +177,7 @@
                       <div class="form-group row">
                         <label for="inputPassword" class="col-sm-4 col-form-label" >Name/code:</label>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control" v-model="name" min="1" max="5" :disabled="selector.selected.length == 0" placeholder="ex. S1">
+                          <input type="text" id="cell_code_editor" class="form-control" v-model="name" min="1" max="5" :disabled="selector.selected.length == 0" placeholder="ex. S1">
                         </div>
                       </div>
 

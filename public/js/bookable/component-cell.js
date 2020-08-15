@@ -95,8 +95,14 @@ Vue.component('cell', {
     		return null;
     	}else{
     		//pure child action
+        this.selector_controller.toggleAddCellID( this.cId( num ) );
+        
+        //auto focus on the cell code editor for name
+        var cell_code_editor = document.getElementById("cell_code_editor");
+        if (cell_code_editor) {
+            cell_code_editor.focus();
+        }
 
-    		this.selector_controller.toggleAddCellID( this.cId( num ) );
     	}
     },
 
