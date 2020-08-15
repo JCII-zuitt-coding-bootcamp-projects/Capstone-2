@@ -141,7 +141,7 @@
                   <template v-if="selector.phase == 'Divisioning' ">
                     
                     
-                      <h5 class="text-center text-info">Devide inner cells</h5>
+                      <h5 class="text-center text-info">Divide inner cells</h5>
 
                       <div class="form-group row">
                         <label for="inputPassword" class="col-sm-4 col-form-label" >Columns:</label>
