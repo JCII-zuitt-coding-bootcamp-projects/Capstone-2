@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'credits' => '1000' // default credits for new user for testing buying seats
         ]);
     }
 }

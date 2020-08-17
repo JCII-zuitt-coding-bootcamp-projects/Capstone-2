@@ -147,6 +147,7 @@
                       &nbsp;&nbsp;Account
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#" title="Remaining credits for testing">₱ {{ auth()->user()->credits }}</a>
                       <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
 
                       <div class="dropdown-divider"></div>
