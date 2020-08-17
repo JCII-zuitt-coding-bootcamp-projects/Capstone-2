@@ -11,7 +11,7 @@
 @section('content')
 <div class="container">
 
-  <h5 class=" text-secondary text-center">Services</h5>
+  <h4 class=" text-secondary text-center">Services</h4>
 
   <div class="container p-sm-0 p-md-5 " id="reservations">
     

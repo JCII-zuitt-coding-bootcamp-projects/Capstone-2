@@ -13,6 +13,8 @@
 <div class="container">
     <div class="row justify-content-center">
 
+            <h5 class="text-center mt-2 mb-4" title="Remaining credits for testing."> <span class="text-success">₱ {{ auth()->user()->credits }}</span> <br/> <i class="text-secondary" style="font-weight: 100;">credits remaining</i></h5>
+
             <div class="card">
                 <div class="card-header text-center">Booking page</div>
                 {{-- ids --}}

@@ -19,7 +19,7 @@
       <h6 class="text-info mt-5 text-center" v-if="reservation_payments.length == 0">You have no reservations.</h6>
     </template>
     
-    <div v-for="payment in reservation_payments" class="mt-3">
+    <div v-for="payment in reservation_payments" class="mt-1 mb-5">
         <template  v-if="payment.reservations.length > 0">
           <h6 class="text-info text-center">
             @{{ payment.bookable.name }}
@@ -39,7 +39,7 @@
               <li class="list-group-item p-1" v-for="reservation in payment.reservations">
                 <span >
                       <i class="material-icons float-left text-secondary">label</i>
-                      @{{ reservation.bookable_item_name }}
+                       <span title="Ticket seat">@{{ reservation.bookable_item_name }}</span>
 
                       <button type="button" class="btn btn-sm btn-outline-info float-right" data-toggle="modal" :data-target="'#'+reservation.code">
                         QR code
